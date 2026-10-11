@@ -84,7 +84,7 @@ def process(fid, gpkg):
   cs = [classe(r) for r in df[list(FIELDS)].to_dict("records")]
   df["o"] = [c[0] for c in cs]; df["s"] = [c[1] for c in cs]
   for k in FIELDS:
-    if k in ("ao", "ap"): df[k] = df[k].map(lambda v: num(v) or None).astype("object")
+    if k in ("ao", "ap"): df[k] = df[k].map(lambda v: num(v) or None).astype("Int64")
     else: df[k] = df[k].map(lambda v: re.sub(r"\.0$", "", sv(v)) or None).astype("object")
   with open(f"{OUT}/schema-{fid}.txt", "a") as f:
     f.write("classes: " + json.dumps(df["o"].value_counts().to_dict()) + "\n")
