@@ -113,6 +113,29 @@ def wfs_zone(nom, s_, w, n, e, step=0.05):
   json.dump({"type": "FeatureCollection", "features": list(feats.values())}, open(path, "w"))
   return path
 
+VAL = {"i": 3.0, "a": 1.4, "h": 2.0, "o": 0.9, "r": 0.6, "x": 0.0, "w": 0.0}
+def potentiel(df):
+  """Note « Où c'est bon » de 0 à 10 par peuplement : sa propre valeur + ses voisins.
+     Lisière = voisin complémentaire (nourriture à côté d'abri, ou l'inverse); un milieu humide voisin ajoute un peu."""
+  m = df.to_crs(32198); g = m.geometry.buffer(2)
+  L, R = m.sindex.query(g, predicate="intersects")
+  o = df["o"].tolist(); s_ = df["s"].tolist(); n = len(df)
+  food = lambda c: c in ("n", "i"); cover = lambda c: c in ("a", "i")
+  nb = [0] * n; comp = [0] * n; hum = [0] * n
+  for a, b in zip(L, R):
+    if a == b: continue
+    nb[a] += 1
+    if (food(o[a]) and cover(o[b]) and o[a] != o[b]) or (cover(o[a]) and food(o[b]) and o[a] != o[b]): comp[a] += 1
+    if o[b] == "h": hum[a] += 1
+  P = []; Lf = []
+  for k in range(n):
+    c = o[k]; v = (2.8 if s_[k] >= 3 else 2.2) if c == "n" else VAL.get(c, 0.0)
+    f = comp[k] / nb[k] if nb[k] else 0.0
+    p = v / 3 * 7.2 + (2.2 * min(1.0, f * 1.6) if c in ("n", "i", "a") else 0) + (0.6 if hum[k] and c in ("n", "i", "a") else 0)
+    if c in ("x", "w"): p = 0
+    P.append(int(round(min(10, max(0, p))))); Lf.append(1 if f >= 0.3 else 0)
+  df["p"] = P; df["l"] = Lf
+
 def layer_of(path):
   lays = pyogrio.list_layers(path)
   best = None
@@ -138,6 +161,7 @@ def process(fid, gpkg):
   df = df.to_crs(4326)
   cs = [classe(r) for r in df[list(FIELDS)].to_dict("records")]
   df["o"] = [c[0] for c in cs]; df["s"] = [c[1] for c in cs]
+  potentiel(df)
   for k in FIELDS:
     if k in ("ao", "ap"): df[k] = df[k].map(lambda v: num(v) or None).astype("Int64")
     else: df[k] = df[k].map(lambda v: re.sub(r"\.0$", "", sv(v)) or None).astype("object")
