@@ -4,7 +4,7 @@ name: Carte écoforestière
 on:
   push:
     branches: [main]
-    paths: ["feuillets.txt", "scripts/**", ".github/workflows/carte.yml"]
+    paths: ["zones.txt", "feuillets.txt", "scripts/**", ".github/workflows/carte.yml"]
   schedule:
     - cron: "0 7 15 7 *"
   workflow_dispatch:
@@ -18,7 +18,7 @@ concurrency:
 jobs:
   preparer:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 300
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

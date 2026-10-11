@@ -21,11 +21,14 @@ def get(url, dest=None, tries=4):
   raise RuntimeError("téléchargement impossible : " + url)
 
 CSV_URL = "https://diffusion.mffp.gouv.qc.ca/Diffusion/DonneeGratuite/Foret/DONNEES_FOR_ECO_SUD/Cartes_ecoforestieres_perturbations/03-Telechargement/URL_250K_MAJ.csv"
+# Le serveur de téléchargement refuse les serveurs infonuagiques : on passe par le service WFS officiel (même carte, CC-BY 4.0)
+WFS = "https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi"
 OUT = "dist"; TMP = "tmp"; YEAR = datetime.date.today().year
 os.makedirs(OUT, exist_ok=True); os.makedirs(TMP, exist_ok=True)
 
 # Champs recherchés (le premier nom trouvé gagne) — les noms exacts sont dans le dictionnaire officiel
 FIELDS = {
+  "tc": [r"^type_couv$", r"TYPE_COUV"],                        # type de couvert : F feuillu, M mixte, R résineux
   "e":  [r"^GR_ESS$", r"^GR_ESS", r"ESS"],                     # groupement d'essences
   "d":  [r"^CL_DENS$", r"DENS"],                                # classe de densité (A-D)
   "h":  [r"^CL_HAUT$", r"HAUT"],                                # classe de hauteur (1-7)
@@ -38,7 +41,7 @@ FIELDS = {
   "te": [r"^CO_TER$", r"^TYPE_TER$", r"TER(?!R)"],              # terrain non forestier (eau, dénudé humide, aulnaie…)
   "dr": [r"^CL_DRAI$", r"DRAI"],                                # drainage
 }
-FEU = re.compile(r"BP|PE|FI|FX|ER|BJ|PEU|FT|PU")
+FEU = re.compile(r"BP|PE|PT|FI|FX|ER|BJ|PEU|FT|PU|BB")
 RES = re.compile(r"EN|EB|SB|SE|RX|RZ|PG|EE|EP|SS|ML|ME|TO|TH|PB|PR")
 DIST = re.compile(r"^(CT|CPR|CPRS|CRS|CRB|BR|BRU|CHT|ES|P|PL|PLN|CBA|CPH|CB|CPC|CPPTM|CPI_CP|REA|CBT|CMR)$")
 HUMIDE = re.compile(r"^(DH|AL|INO|TOU|MAR)$")
@@ -62,7 +65,8 @@ def classe(r):
   te = sv(r.get("te")).upper()
   if EAU.match(te): return "w", 0
   if HUMIDE.match(te): return "h", 2
-  e = sv(r.get("e")).upper(); feu = bool(FEU.search(e)); res = bool(RES.search(e))
+  e = sv(r.get("e")).upper(); tc = sv(r.get("tc")).upper()
+  feu = tc in ("F", "M") or (not tc and bool(FEU.search(e))); res = tc in ("R", "M") or (not tc and bool(RES.search(e)))
   ori = sv(r.get("or")).upper(); ao = num(r.get("ao"))
   since = YEAR - ao if (ao and DIST.match(ori)) else None
   if since is not None and since < 5: return "o", 1
@@ -73,6 +77,35 @@ def classe(r):
     d = sv(r.get("d")).upper(); h = sv(r.get("h"))
     return ("a", 2) if (d in ("A", "B") and h in ("1", "2", "3", "4")) else ("r", 1)
   return "x", 0
+
+
+def wfs_zone(nom, s_, w, n, e, step=0.05):
+  """Télécharge les peuplements d'une zone par petits carreaux (service WFS), sans doublons."""
+  feats = {}; lat = s_; k = 0; fails = 0
+  while lat < n:
+    lon = w
+    while lon < e:
+      start = 0
+      while True:
+        q = (f"{WFS}?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326"
+             f"&BBOX={lat:.4f},{lon:.4f},{min(lat+step,n):.4f},{min(lon+step,e):.4f},urn:ogc:def:crs:EPSG::4326"
+             f"&COUNT=2000&STARTINDEX={start}&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1")
+        try:
+          raw = get(q, tries=5); j = json.loads(raw.decode("iso-8859-1"))
+        except Exception as ex:
+          fails += 1; log("carreau raté", lat, lon, repr(ex)); break
+        fs = j.get("features", [])
+        for f in fs:
+          fid = f.get("properties", {}).get("ogc_fid") or f.get("id")
+          if fid is not None: feats[fid] = f
+        k += 1
+        if len(fs) < 2000: break
+        start += 2000
+      lon += step; time.sleep(0.2)
+    log(nom, f"lat {lat:.2f} : {len(feats)} peuplements, {k} requêtes, {fails} ratés"); lat += step
+  path = f"{TMP}/{nom}.geojson"
+  json.dump({"type": "FeatureCollection", "features": list(feats.values())}, open(path, "w"))
+  return path
 
 def layer_of(path):
   lays = pyogrio.list_layers(path)
@@ -85,7 +118,8 @@ def layer_of(path):
   return best[1] if best else lays[0][0]
 
 def process(fid, gpkg):
-  lay = layer_of(gpkg); info = pyogrio.read_info(gpkg, layer=lay); cols = list(info["fields"])
+  lay = layer_of(gpkg) if gpkg.endswith(".gpkg") else pyogrio.list_layers(gpkg)[0][0]
+  info = pyogrio.read_info(gpkg, layer=lay); cols = list(info["fields"])
   m = {k: pick(cols, v) for k, v in FIELDS.items()}
   with open(f"{OUT}/schema-{fid}.txt", "w") as f:
     f.write(f"couche: {lay}\nentités: {info['features']}\ncrs: {info['crs']}\nchamps: {cols}\ncorrespondance: {json.dumps(m)}\n")
@@ -129,8 +163,21 @@ def main_safe():
 
 def main():
   args = sys.argv[1:]; done = []
-  if args and args[0] == "--test":
+  if args and args[0] == "--zone":   # essai rapide : --zone nom;s;w;n;e
+    nom, a, b, c, d = args[1].split(";"); g = wfs_zone(nom, float(a), float(b), float(c), float(d)); done.append(process(nom, g))
+  elif args and args[0] == "--test":
     done.append(process("TEST", args[1]))
+  elif os.path.exists("zones.txt"):
+    for l in open("zones.txt"):
+      l = l.strip()
+      if not l or l.startswith("#"): continue
+      nom, a, b, c, d = [x.strip() for x in l.split(";")]
+      try:
+        g = wfs_zone(nom, float(a), float(b), float(c), float(d))
+        r = process(nom, g); r["bbox"] = [float(b), float(a), float(d), float(c)]; done.append(r)
+      except Exception:
+        log("ERREUR", nom, traceback.format_exc())
+      shutil.rmtree(TMP, ignore_errors=True); os.makedirs(TMP, exist_ok=True)
   else:
     want = [l.strip().upper() for l in open("feuillets.txt") if l.strip() and not l.startswith("#")]
     raw = get(CSV_URL)

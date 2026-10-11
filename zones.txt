@@ -1,0 +1,3 @@
+# Zones à préparer : nom;lat_sud;lon_ouest;lat_nord;lon_est   (modifier ce fichier relance la préparation)
+# Abitibi-Ouest (La Sarre, lac Foubert, Palmarolle, Normétal, Duparquet)
+abitibi-ouest;48.35;-79.55;49.25;-78.75
