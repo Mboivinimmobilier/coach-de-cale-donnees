@@ -3,7 +3,22 @@ Pour chaque feuillet 1/250 000 : télécharge le GPKG officiel, garde les champs
 calcule une classe « orignal » par peuplement, et produit un fichier PMTiles (tuiles vectorielles).
 Usage : python scripts/prep.py [--test chemin.gpkg]"""
 import csv, io, json, os, re, subprocess, sys, zipfile, urllib.request, datetime, glob, shutil
-import pyogrio, geopandas as gpd
+import pyogrio, geopandas as gpd, traceback, time
+UA = {"User-Agent": "Mozilla/5.0 (CoachDeCale; +https://coach-de-cale.netlify.app)"}
+LOG = []
+def log(*a):
+  t = " ".join(str(x) for x in a); print(t, flush=True); LOG.append(t)
+def get(url, dest=None, tries=4):
+  for i in range(tries):
+    try:
+      req = urllib.request.Request(url, headers=UA)
+      with urllib.request.urlopen(req, timeout=300) as r:
+        if not dest: return r.read()
+        with open(dest, "wb") as f: shutil.copyfileobj(r, f, 1 << 20)
+        return dest
+    except Exception as e:
+      log("essai", i + 1, "échec", url, repr(e)); time.sleep(10 * (i + 1))
+  raise RuntimeError("téléchargement impossible : " + url)
 
 CSV_URL = "https://diffusion.mffp.gouv.qc.ca/Diffusion/DonneeGratuite/Foret/DONNEES_FOR_ECO_SUD/Cartes_ecoforestieres_perturbations/03-Telechargement/URL_250K_MAJ.csv"
 OUT = "dist"; TMP = "tmp"; YEAR = datetime.date.today().year
@@ -74,7 +89,7 @@ def process(fid, gpkg):
   m = {k: pick(cols, v) for k, v in FIELDS.items()}
   with open(f"{OUT}/schema-{fid}.txt", "w") as f:
     f.write(f"couche: {lay}\nentités: {info['features']}\ncrs: {info['crs']}\nchamps: {cols}\ncorrespondance: {json.dumps(m)}\n")
-  print(fid, "couche", lay, info["features"], "entités", json.dumps(m), flush=True)
+  log(fid, "couche", lay, info["features"], "entités", json.dumps(m))
   use = [c for c in m.values() if c]
   df = gpd.read_file(gpkg, layer=lay, columns=use, engine="pyogrio")
   df = df.rename(columns={v: k for k, v in m.items() if v})
@@ -100,10 +115,17 @@ def process(fid, gpkg):
 def download(fid, url):
   z = f"{TMP}/{fid}.zip"
   if not os.path.exists(z):
-    print("téléchargement", fid, url, flush=True)
-    urllib.request.urlretrieve(url, z)
+    log("téléchargement", fid, url); get(url, z); log("reçu", fid, os.path.getsize(z), "octets")
   d = f"{TMP}/{fid}"; shutil.rmtree(d, ignore_errors=True); zipfile.ZipFile(z).extractall(d)
   g = glob.glob(f"{d}/**/*.gpkg", recursive=True); return g[0]
+
+def main_safe():
+  try: main()
+  except Exception:
+    log("ERREUR GÉNÉRALE", traceback.format_exc())
+    os.makedirs(OUT, exist_ok=True); open(f"{OUT}/journal.txt", "w").write("\n".join(LOG))
+    if not os.path.exists(f"{OUT}/index.json"): json.dump({"maj": None, "feuillets": [], "erreur": True}, open(f"{OUT}/index.json", "w"))
+    open(f"{OUT}/.nojekyll", "w").close()
 
 def main():
   args = sys.argv[1:]; done = []
@@ -111,18 +133,28 @@ def main():
     done.append(process("TEST", args[1]))
   else:
     want = [l.strip().upper() for l in open("feuillets.txt") if l.strip() and not l.startswith("#")]
-    rows = list(csv.DictReader(io.StringIO(urllib.request.urlopen(CSV_URL).read().decode("utf-8-sig"))))
+    raw = get(CSV_URL)
+    try: txt = raw.decode("utf-8-sig")
+    except UnicodeDecodeError: txt = raw.decode("cp1252")
+    log("CSV", len(txt), "caractères ; début :", txt[:300].replace("\n", " ⏎ "))
+    delim = ";" if txt.split("\n", 1)[0].count(";") > txt.split("\n", 1)[0].count(",") else ","
+    rows = list(csv.DictReader(io.StringIO(txt), delimiter=delim))
     key = next(k for k in rows[0] if "FEUILLET" in k.upper() and "NOM" not in k.upper())
     gk = next(k for k in rows[0] if "GPKG" in k.upper())
+    log("colonnes", list(rows[0].keys()), "lignes", len(rows))
     for fid in want:
-      r = next((x for x in rows if x[key].strip().upper() == fid), None)
-      if not r: print("introuvable", fid); continue
-      done.append(process(fid, download(fid, r[gk].strip())))
+      try:
+        r = next((x for x in rows if x[key].strip().upper() in (fid, fid.replace("0", ""), "0" + fid)), None)
+        if not r: log("introuvable", fid, "exemples :", [x[key] for x in rows[:8]]); continue
+        done.append(process(fid, download(fid, r[gk].strip())))
+      except Exception:
+        log("ERREUR", fid, traceback.format_exc())
       shutil.rmtree(TMP, ignore_errors=True); os.makedirs(TMP, exist_ok=True)  # libérer le disque
   idx = {"maj": datetime.date.today().isoformat(), "annee_ref": YEAR, "source": "MRNF, Carte écoforestière à jour (CC-BY 4.0)",
          "classes": {"i": "Idéal (mixte)", "n": "Nourriture", "a": "Abri", "h": "Humide", "o": "Ouvert récent", "r": "Résineux peu utile", "w": "Eau", "x": "Inconnu"}, "feuillets": done}
   json.dump(idx, open(f"{OUT}/index.json", "w"), ensure_ascii=False, indent=1)
   open(f"{OUT}/.nojekyll", "w").close()
-  print(json.dumps(idx, ensure_ascii=False)[:800])
+  log(json.dumps(idx, ensure_ascii=False)[:800])
+  open(f"{OUT}/journal.txt", "w").write("\n".join(LOG))
 
-if __name__ == "__main__": main()
+if __name__ == "__main__": main_safe()
