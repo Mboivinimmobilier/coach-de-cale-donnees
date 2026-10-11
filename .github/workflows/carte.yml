@@ -1,0 +1,45 @@
+name: Carte écoforestière
+# Prépare la carte écoforestière (MRNF) pour Coach de câle et la publie sur GitHub Pages.
+# Roule quand on change la liste des feuillets, chaque année en juillet (nouvelles perturbations), ou à la main.
+on:
+  push:
+    branches: [main]
+    paths: ["feuillets.txt", "scripts/**", ".github/workflows/carte.yml"]
+  schedule:
+    - cron: "0 7 15 7 *"
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  preparer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Outils
+        run: |
+          pip install pyogrio geopandas shapely
+          sudo apt-get update -qq && sudo apt-get install -y -qq build-essential libsqlite3-dev zlib1g-dev
+          git clone --depth 1 https://github.com/felt/tippecanoe.git /tmp/tippecanoe
+          make -C /tmp/tippecanoe -j4 >/dev/null && sudo make -C /tmp/tippecanoe install >/dev/null
+      - name: Préparer les feuillets
+        run: python scripts/prep.py
+      - name: Page d'accueil
+        run: cp README.md dist/README.md && ls -la dist
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: dist }
+  publier:
+    needs: preparer
+    runs-on: ubuntu-latest
+    environment: { name: github-pages, url: "${{ steps.d.outputs.page_url }}" }
+    steps:
+      - id: d
+        uses: actions/deploy-pages@v4
