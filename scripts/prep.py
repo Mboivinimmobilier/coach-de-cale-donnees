@@ -79,6 +79,10 @@ def classe(r):
   if since is not None and since <= 30: return ("i", 3) if (feu and res) else ("n", 3 if since >= 10 else 2)
   if feu and res: return "i", 3
   if feu: return "n", 2
+  # Résineux en régénération mêlés de feuillus (RXFX, ENFX…) : jeune repousse = nourriture
+  h_ = sv(r.get("h")); g_ = sv(r.get("g")).upper()
+  jeune = h_ in ("4", "5", "6", "7") or g_ in ("10", "30", "JIN", "JIR")
+  if res and FEU.search(e) and jeune: return "n", 2
   if res:
     d = sv(r.get("d")).upper(); h = sv(r.get("h"))
     return ("a", 2) if (d in ("A", "B") and h in ("1", "2", "3", "4")) else ("r", 1)
