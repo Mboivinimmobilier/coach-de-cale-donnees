@@ -4,7 +4,7 @@ Ce dépôt prépare automatiquement la **Carte écoforestière à jour** du Qué
 
 - Source : Ministère des Ressources naturelles et des Forêts (MRNF), *Carte écoforestière à jour*, licence **CC-BY 4.0** (Données Québec).
 - Traitement : pour chaque zone listée dans `zones.txt` (téléchargée par le service WFS officiel), le script garde les champs utiles et ajoute une **classe « orignal »** par peuplement
-  (i = idéal/mixte, n = nourriture, a = abri, h = humide, o = ouvert récent, r = résineux peu utile, w = eau).
+  (i = idéal/mixte, n = nourriture, a = abri, h = humide (tourbière, dénudé humide : dépôt organique ou mauvais drainage), o = ouvert récent, r = résineux peu utile, w = eau).
 - Résultat : un fichier `zone.pmtiles` par zone, publié sur GitHub Pages, + `index.json`.
 - Mise à jour : chaque année en juillet, ou quand on modifie `zones.txt`.
 

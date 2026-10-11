@@ -39,7 +39,8 @@ FIELDS = {
   "ap": [r"^AN_PERTURB$", r"AN_?PERT"],                         # année de la perturbation partielle
   "t":  [r"^TYPE_ECO$", r"TYP.*ECO"],                           # type écologique
   "te": [r"^CO_TER$", r"^TYPE_TER$", r"TER(?!R)"],              # terrain non forestier (eau, dénudé humide, aulnaie…)
-  "dr": [r"^CL_DRAI$", r"DRAI"],                                # drainage
+  "dr": [r"^CL_DRAI$", r"DRAI"],                                # drainage (50-69 = mauvais à très mauvais)
+  "ds": [r"^DEP_SUR$", r"DEP_?SUR"],                            # dépôt de surface (7 = organique : tourbière)
 }
 FEU = re.compile(r"BP|PE|PT|FI|FX|ER|BJ|PEU|FT|PU|BB")
 RES = re.compile(r"EN|EB|SB|SE|RX|RZ|PG|EE|EP|SS|ML|ME|TO|TH|PB|PR")
@@ -70,6 +71,11 @@ def classe(r):
   ori = sv(r.get("or")).upper(); ao = num(r.get("ao"))
   since = YEAR - ao if (ao and DIST.match(ori)) else None
   if since is not None and since < 5: return "o", 1
+  # Terrain sans couvert forestier : tourbière / dénudé humide (dépôt organique ou mauvais drainage), sinon eau, agricole, chemin…
+  if not tc and not e and (since is None or since > 30):
+    ds = sv(r.get("ds")).upper(); dr = sv(r.get("dr"))
+    if ds.startswith("7") or (dr[:1] in ("5", "6")): return "h", 2
+    return "x", 0
   if since is not None and since <= 30: return ("i", 3) if (feu and res) else ("n", 3 if since >= 10 else 2)
   if feu and res: return "i", 3
   if feu: return "n", 2
