@@ -9,7 +9,7 @@ on:
     - cron: "0 7 15 7 *"
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 concurrency:
@@ -33,6 +33,15 @@ jobs:
         run: python scripts/prep.py
       - name: Page d'accueil
         run: cp README.md dist/README.md && ls -la dist
+      - name: Rapport (journal lisible dans la branche « rapport »)
+        if: always()
+        run: |
+          mkdir -p /tmp/rap && cp dist/*.txt dist/index.json /tmp/rap/ 2>/dev/null || true
+          ls -la dist > /tmp/rap/fichiers.txt 2>&1 || true
+          cd /tmp/rap && git init -q && git checkout -q -b rapport
+          git -c user.name="github-actions" -c user.email="actions@github.com" add -A
+          git -c user.name="github-actions" -c user.email="actions@github.com" commit -q -m "Rapport $(date -u +%F_%H%M)"
+          git push -f -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" rapport
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with: { path: dist }
