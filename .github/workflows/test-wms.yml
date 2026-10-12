@@ -1,0 +1,21 @@
+name: test-wms
+on:
+  push:
+    paths: ['.github/workflows/test-wms.yml']
+permissions:
+  contents: write
+jobs:
+  t:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir out && cd out
+          U="https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ori_pee_close_scale&STYLES=&CRS=EPSG:3857&FORMAT=image/png&TRANSPARENT=TRUE"
+          B="BBOX=-8822000,6203000,-8820800,6204200"
+          curl -s -o a256.png "$U&$B&WIDTH=256&HEIGHT=256"
+          curl -s -o b512.png "$U&$B&WIDTH=512&HEIGHT=512"
+          curl -s -o c512r.png "$U&$B&WIDTH=512&HEIGHT=512&MAP_RESOLUTION=216"
+          curl -s -o d512r.png "$U&$B&WIDTH=512&HEIGHT=512&FORMAT_OPTIONS=dpi:216"
+          ls -la
+          git init -q && git checkout -q -b testwms && git add . && git -c user.name=bot -c user.email=b@b commit -qm t
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" testwms
