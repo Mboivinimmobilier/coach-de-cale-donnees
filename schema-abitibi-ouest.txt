@@ -1,0 +1,16 @@
+couche: abitibi-ouest
+entités: 81875
+crs: EPSG:4326
+champs: ['ogc_fid', 'geocode', 'origine', 'an_origine', 'perturb', 'an_perturb', 'type_couv', 'gr_ess', 'cl_dens', 'cl_haut', 'cl_age', 'cl_pent', 'dep_sur', 'cl_drai', 'no_prg', 'in_naipf']
+correspondance: {"tc": "type_couv", "e": "gr_ess", "d": "cl_dens", "h": "cl_haut", "g": "cl_age", "or": "origine", "ao": "an_origine", "pe": "perturb", "ap": "an_perturb", "t": null, "te": null, "dr": "cl_drai", "ds": "dep_sur", "pt": "cl_pent"}
+classes: {"n": 25431, "e": 19284, "i": 10563, "h": 9363, "p": 5584, "x": 3520, "o": 2269, "a": 2139, "w": 1507, "r": 1449, "b": 766}
+exemples:
+       fid   or    ao   pe    ap   tc       e    d    h    g   pt    ds   dr     t   te   vp   cg      st                          an  o  s     v    p  l  ld    q  rd  fh
+0  3724641  NaN  <NA>  NaN  <NA>    R    ENEN    B    3   90    F   R1A   20  RS20  NaN  RS2  NaN  18.552         EN100*75% 13m*1.8ha  e  2  0.75  4.9  1  83  6.5 NaN   0
+1  3723795   BR  1920  NaN  <NA>    M  PTBPSB    B    3  VIR    D   R1A   20   NaN  NaN  NaN  NaN     NaN                         NaN  i  3  3.00  9.2  1  65  7.1 NaN   0
+2  3724620   BR  1920  NaN  <NA>  NaN     NaN  NaN  NaN  NaN  NaN   NaN  NaN   NaN  INO  NaN  NaN     NaN   Site inondé, exondé*2.7ha  h  3  1.80  6.4  1  96  6.6 NaN   0
+3  3724621    P  1990  NaN  <NA>  NaN     NaN  NaN  NaN  NaN  NaN   NaN  NaN   NaN  INO  NaN  NaN     NaN   Site inondé, exondé*2.7ha  h  3  1.80  3.6  0   0  5.5 NaN   0
+4  3724197   BR  1920  NaN  <NA>    M  BPPTSB    B    3  VIR    D   R1A   20   NaN  NaN  NaN  NaN     NaN                         NaN  i  3  3.00  8.9  1  58  6.6 NaN   0
+5  3724302    P  1991  EPC  1998    R      RZ    A    4   30    B  4GSY   20  MS61  NaN  MS6  NaN  24.645  RZ80SB10FI10*85% 10m*2.7ha  e  2  1.62  6.4  1  74  6.5 NaN   0
+6  3724605  NaN  <NA>  NaN  <NA>  NaN     NaN  NaN  NaN  NaN  NaN   NaN  NaN   NaN  EAU  NaN  NaN     NaN                  Eau*13.9ha  w  0  0.00  0.0  0   0  6.6 NaN   0
+7  3724625   BR  1920  NaN  <NA>    M  BPPTSB    B    2  VIR    D   R1A   20   NaN  NaN  NaN  NaN     NaN                         NaN  i  3  3.00  7.5  0  21  6.8 NaN   0

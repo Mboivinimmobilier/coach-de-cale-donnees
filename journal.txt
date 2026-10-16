@@ -1,0 +1,99 @@
+abitibi-ouest lat 48.35 : 5264 peuplements, 17 requêtes, 0 ratés
+abitibi-ouest lat 48.40 : 9772 peuplements, 34 requêtes, 0 ratés
+abitibi-ouest lat 48.45 : 14323 peuplements, 51 requêtes, 0 ratés
+abitibi-ouest lat 48.50 : 19116 peuplements, 68 requêtes, 0 ratés
+abitibi-ouest lat 48.55 : 23465 peuplements, 85 requêtes, 0 ratés
+abitibi-ouest lat 48.60 : 27242 peuplements, 102 requêtes, 0 ratés
+abitibi-ouest lat 48.65 : 29973 peuplements, 119 requêtes, 0 ratés
+abitibi-ouest lat 48.70 : 33662 peuplements, 136 requêtes, 0 ratés
+abitibi-ouest lat 48.75 : 37502 peuplements, 153 requêtes, 0 ratés
+abitibi-ouest lat 48.80 : 41310 peuplements, 170 requêtes, 0 ratés
+abitibi-ouest lat 48.85 : 45824 peuplements, 187 requêtes, 0 ratés
+abitibi-ouest lat 48.90 : 50908 peuplements, 204 requêtes, 0 ratés
+abitibi-ouest lat 48.95 : 55886 peuplements, 221 requêtes, 0 ratés
+abitibi-ouest lat 49.00 : 60629 peuplements, 238 requêtes, 0 ratés
+abitibi-ouest lat 49.05 : 65700 peuplements, 255 requêtes, 0 ratés
+abitibi-ouest lat 49.10 : 70859 peuplements, 272 requêtes, 0 ratés
+abitibi-ouest lat 49.15 : 76471 peuplements, 289 requêtes, 0 ratés
+abitibi-ouest lat 49.20 : 81875 peuplements, 306 requêtes, 0 ratés
+abitibi-ouest lat 49.25 : 81875 peuplements, 323 requêtes, 0 ratés
+abitibi-ouest couche abitibi-ouest 81875 entités {"tc": "type_couv", "e": "gr_ess", "d": "cl_dens", "h": "cl_haut", "g": "cl_age", "or": "origine", "ao": "an_origine", "pe": "perturb", "ap": "an_perturb", "t": null, "te": null, "dr": "cl_drai", "ds": "dep_sur", "pt": "cl_pent"}
+abitibi-ouest ca_interv_for_close_scale 30974 entités 0 ratés
+abitibi-ouest ca_feu_close_scale 474 entités 0 ratés
+abitibi-ouest ca_perturb_autre_close_scale 503 entités 0 ratés
+abitibi-ouest mises à jour de perturbations : 21623
+levés géophysiques au sol ou possibles : 1847 sur 2 couches
+abitibi-ouest détails à lire : 0 ( 58361 déjà en cache )
+abitibi-ouest détails lus cette fois : 0 en 0 s ; total en cache : 58361
+routes https://overpass-api.de/api/interpreter <HTTPError 406: 'Not Acceptable'>
+routes et chemins (OSM) : 4718 dont 454 passantes
+nord-la-sarre lat 49.25 : 6035 peuplements, 17 requêtes, 0 ratés
+nord-la-sarre lat 49.30 : 10847 peuplements, 34 requêtes, 0 ratés
+nord-la-sarre lat 49.35 : 15199 peuplements, 51 requêtes, 0 ratés
+nord-la-sarre lat 49.40 : 18432 peuplements, 68 requêtes, 0 ratés
+nord-la-sarre lat 49.45 : 21849 peuplements, 85 requêtes, 0 ratés
+nord-la-sarre lat 49.50 : 25877 peuplements, 102 requêtes, 0 ratés
+nord-la-sarre lat 49.55 : 29353 peuplements, 119 requêtes, 0 ratés
+nord-la-sarre lat 49.60 : 32319 peuplements, 136 requêtes, 0 ratés
+nord-la-sarre lat 49.65 : 35564 peuplements, 153 requêtes, 0 ratés
+nord-la-sarre lat 49.70 : 39216 peuplements, 170 requêtes, 0 ratés
+nord-la-sarre lat 49.75 : 43310 peuplements, 187 requêtes, 0 ratés
+nord-la-sarre lat 49.80 : 47736 peuplements, 204 requêtes, 0 ratés
+nord-la-sarre lat 49.85 : 52089 peuplements, 221 requêtes, 0 ratés
+nord-la-sarre lat 49.90 : 55473 peuplements, 238 requêtes, 0 ratés
+nord-la-sarre lat 49.95 : 58748 peuplements, 255 requêtes, 0 ratés
+nord-la-sarre lat 50.00 : 62357 peuplements, 272 requêtes, 0 ratés
+nord-la-sarre lat 50.05 : 66442 peuplements, 289 requêtes, 0 ratés
+nord-la-sarre lat 50.10 : 69939 peuplements, 306 requêtes, 0 ratés
+nord-la-sarre lat 50.15 : 71910 peuplements, 323 requêtes, 0 ratés
+nord-la-sarre lat 50.20 : 73099 peuplements, 340 requêtes, 0 ratés
+essai 1 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.2500,-79.5500,50.3000,-79.5000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 2 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.2500,-79.5500,50.3000,-79.5000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 3 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.2500,-79.5500,50.3000,-79.5000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 4 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.2500,-79.5500,50.3000,-79.5000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 5 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.2500,-79.5500,50.3000,-79.5000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+carreau raté ori_pee_close_scale 50.24999999999994 -79.55 RuntimeError('téléchargement impossible : https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.2500,-79.5500,50.3000,-79.5000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1')
+nord-la-sarre lat 50.25 : 73871 peuplements, 356 requêtes, 1 ratés
+essai 1 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.5500,50.3000,-79.5000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 2 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.5500,50.3000,-79.5000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 3 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.5500,50.3000,-79.5000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 4 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.5500,50.3000,-79.5000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 5 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.5500,50.3000,-79.5000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+carreau raté ori_pee_close_scale 50.29999999999994 -79.55 RuntimeError('téléchargement impossible : https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.5500,50.3000,-79.5000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1')
+essai 1 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.5000,50.3000,-79.4500,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 2 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.5000,50.3000,-79.4500,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 3 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.5000,50.3000,-79.4500,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 4 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.5000,50.3000,-79.4500,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 5 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.5000,50.3000,-79.4500,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+carreau raté ori_pee_close_scale 50.29999999999994 -79.5 RuntimeError('téléchargement impossible : https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.5000,50.3000,-79.4500,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1')
+essai 1 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.4500,50.3000,-79.4000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 2 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.4500,50.3000,-79.4000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 3 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.4500,50.3000,-79.4000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 4 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.4500,50.3000,-79.4000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 5 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.4500,50.3000,-79.4000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+carreau raté ori_pee_close_scale 50.29999999999994 -79.45 RuntimeError('téléchargement impossible : https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.4500,50.3000,-79.4000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1')
+essai 1 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.4000,50.3000,-79.3500,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 2 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.4000,50.3000,-79.3500,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 3 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.4000,50.3000,-79.3500,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 4 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.4000,50.3000,-79.3500,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 5 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.4000,50.3000,-79.3500,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+carreau raté ori_pee_close_scale 50.29999999999994 -79.4 RuntimeError('téléchargement impossible : https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.4000,50.3000,-79.3500,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1')
+essai 1 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.3500,50.3000,-79.3000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 2 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.3500,50.3000,-79.3000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 3 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.3500,50.3000,-79.3000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 4 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.3500,50.3000,-79.3000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+essai 5 échec https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.3500,50.3000,-79.3000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1 <HTTPError 400: 'Internal Server Error'>
+carreau raté ori_pee_close_scale 50.29999999999994 -79.35000000000001 RuntimeError('téléchargement impossible : https://geoegl.msp.gouv.qc.ca/ws/mffpecofor.fcgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326&BBOX=50.3000,-79.3500,50.3000,-79.3000,urn:ogc:def:crs:EPSG::4326&COUNT=2000&STARTINDEX=0&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1')
+nord-la-sarre lat 50.30 : 73871 peuplements, 368 requêtes, 6 ratés
+nord-la-sarre couche nord-la-sarre 73871 entités {"tc": "type_couv", "e": "gr_ess", "d": "cl_dens", "h": "cl_haut", "g": "cl_age", "or": "origine", "ao": "an_origine", "pe": "perturb", "ap": "an_perturb", "t": null, "te": null, "dr": "cl_drai", "ds": "dep_sur", "pt": "cl_pent"}
+nord-la-sarre ca_interv_for_close_scale 6230 entités 0 ratés
+nord-la-sarre ca_feu_close_scale 491 entités 0 ratés
+nord-la-sarre ca_perturb_autre_close_scale 67 entités 0 ratés
+nord-la-sarre mises à jour de perturbations : 9707
+levés géophysiques au sol ou possibles : 1225 sur 2 couches
+nord-la-sarre détails à lire : 0 ( 70030 déjà en cache )
+nord-la-sarre détails lus cette fois : 0 en 0 s ; total en cache : 70030
+routes https://overpass-api.de/api/interpreter <HTTPError 406: 'Not Acceptable'>
+routes https://overpass.private.coffee/api/interpreter <HTTPError 500: 'Internal Server Error'>
+routes et chemins (OSM) : 805 dont 18 passantes
+{"maj": "2026-10-16", "annee_ref": 2026, "source": "MRNF, Carte écoforestière à jour (CC-BY 4.0)", "modele": 2, "classes": {"i": "Idéal (mixte mature)", "a": "Abri avec sapin", "e": "Abri d'épinette noire", "n": "Nourriture", "h": "Humide riche", "b": "Humide pauvre", "p": "Passage", "o": "Ouvert récent", "r": "Résineux peu utile", "w": "Eau", "x": "Non forestier"}, "feuillets": [{"id": "abitibi-ouest", "url": "abitibi-ouest.pmtiles", "bbox": [-79.55, 48.35, -78.75, 49.25], "taille": 118843666, "entites": 81875, "champs": {"tc": "type_couv", "e": "gr_ess", "d": "cl_dens", "h": "cl_haut", "g": "cl_age", "or": "origine", "ao": "an_origine", "pe": "perturb", "ap": "an_perturb", "t": null, "te": null, "dr": "cl_drai", "ds": "dep_sur", "pt": "cl_pent"}}, {"id": "nord-la-sarre", "url": "nord-la-

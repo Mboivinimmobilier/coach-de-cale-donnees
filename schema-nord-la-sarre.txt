@@ -1,0 +1,16 @@
+couche: nord-la-sarre
+entités: 73871
+crs: EPSG:4326
+champs: ['ogc_fid', 'geocode', 'origine', 'an_origine', 'perturb', 'an_perturb', 'type_couv', 'gr_ess', 'cl_dens', 'cl_haut', 'cl_age', 'cl_pent', 'dep_sur', 'cl_drai', 'no_prg', 'in_naipf']
+correspondance: {"tc": "type_couv", "e": "gr_ess", "d": "cl_dens", "h": "cl_haut", "g": "cl_age", "or": "origine", "ao": "an_origine", "pe": "perturb", "ap": "an_perturb", "t": null, "te": null, "dr": "cl_drai", "ds": "dep_sur", "pt": "cl_pent"}
+classes: {"p": 22434, "e": 19103, "h": 11816, "n": 7869, "r": 4051, "b": 2658, "i": 2273, "w": 1874, "a": 1029, "x": 487, "o": 277}
+exemples:
+       fid  or    ao   pe    ap tc     e  d  h    g pt   ds  dr     t   te   vp   cg      st                     an  o  s     v    p  l  ld    q  rd  fh
+0  4206621  CT  1960  NaN  <NA>  R  ENEN  C  3  VIN  A  4GA  40  RE26  NaN  RE2   R1   8.293    EN100*55% 12m*4.2ha  r  0  0.50  1.0  0  19  5.3 NaN   1
+1  4210839  CT  1989  NaN  <NA>  R  ENML  A  4  VIN  B  4GA  30  RE23  NaN  RE2  NaN   9.836  EN60ML40*85% 8m*0.7ha  e  2  1.50  3.7  0   2  6.8 NaN   0
+2  4207944   P  1993  EPC  2004  R    RZ  B  5   30  A  4GA  40  RE26  NaN  RE2  NaN     NaN  RZ80RX20*65% 5m*2.9ha  p  0  0.96  2.5  0   0  6.8 NaN   1
+3  4207933  CT  1960  NaN  <NA>  R  ENEN  C  4   70  A   7T  50  RE39  NaN  RE3   R1   9.266  EN90ML10*45% 9m*2.7ha  p  0  1.20  5.2  1  50  6.4 NaN   2
+4  4207945   P  1993  EPC  2004  R    RZ  B  5   30  A  4GA  40  RE26  NaN  RE2  NaN     NaN  RZ90RX10*65% 5m*5.0ha  p  0  0.96  2.7  0  10  6.4 NaN   1
+5  4207941   P  1993  EPC  2004  R  RZRX  B  5   30  A  4GA  40  RE26  NaN  RE2  NaN     NaN  RZ70RX30*65% 5m*2.1ha  p  0  0.96  4.0  1  32  6.8 NaN   1
+6  4208776   P  1993  EPC  2004  R  ENRX  B  4   30  A  4GA  40  RE26  NaN  RE2  NaN  10.306  EN70ML30*75% 7m*6.8ha  e  2  1.50  3.4  0   0  6.4 NaN   1
+7  4208777   P  1993  EPC  2004  R  ENRX  B  4   30  A  4GA  40  RE26  NaN  RE2  NaN  13.454  EN70ML30*75% 7m*7.8ha  e  2  1.50  4.4  0  20  6.7 NaN   1
