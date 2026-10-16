@@ -2,7 +2,7 @@
 Pour chaque feuillet 1/250 000 : télécharge le GPKG officiel, garde les champs utiles,
 calcule une classe « orignal » par peuplement, et produit un fichier PMTiles (tuiles vectorielles).
 Usage : python scripts/prep.py [--test chemin.gpkg]"""
-import csv, io, json, os, re, subprocess, sys, zipfile, urllib.request, datetime, glob, shutil
+import csv, io, json, os, re, subprocess, sys, zipfile, urllib.request, urllib.parse, datetime, glob, shutil
 import pyogrio, geopandas as gpd, traceback, time
 UA = {"User-Agent": "Mozilla/5.0 (CoachDeCale; +https://coach-de-cale.netlify.app)"}
 LOG = []
@@ -80,7 +80,8 @@ def classe(r):
   cg = sv(r.get("cg")).upper(); st = r.get("st"); ds = sv(r.get("ds")).upper(); dr = sv(r.get("dr"))
   # Terrains non forestiers (code de terrain lu au service de cartes)
   if EAU.match(te): return "w", 0.0, 0
-  if te in ("INO", "AL"): return "h", 1.8, 3
+  if te == "INO": return "h", 1.8, 3
+  if te == "AL": return "h", 1.3, 2   # aulnaie : bon couvert, mais l'aulne est peu mangé
   if te == "DH": return ("b", 1.0, 1) if vp.startswith("TOB") else ("h", 1.8, 3) if vp[:3] in ("TOF", "MA1") else ("h", 1.5, 2)
   if te == "DS": return "r", 0.5, 0
   if NONFOR.match(te): return "x", 0.0, 0
@@ -242,11 +243,12 @@ def potentiel(df):
   FOOD = ("n", "i"); COVER = ("a", "e", "i"); FOREST = ("i", "a", "e", "n", "p")
   tree = shapely.STRtree(G)
   L, Rr = tree.query(shapely.buffer(G, 2), predicate="intersects")
-  touchF = [False] * n; touchC = [False] * n; pa = []; pb = []
+  touchF = [False] * n; touchC = [False] * n; touchH = [False] * n; pa = []; pb = []
   for a_, b_ in zip(L, Rr):
     if a_ == b_: continue
     if o[b_] in FOOD: touchF[a_] = True
     if o[b_] in COVER: touchC[a_] = True
+    if o[b_] in ("h", "b"): touchH[a_] = True
     if a_ < b_ and o[a_] != o[b_] and ((o[a_] in FOOD and o[b_] in COVER) or (o[a_] in COVER and o[b_] in FOOD)): pa.append(a_); pb.append(b_)
   # Lisières nourriture-abri (lignes partagées)
   if pa:
@@ -276,6 +278,7 @@ def potentiel(df):
     near = set(oi[q_] for q_ in qi)
     for k in oi:
       if k not in near: v[k] = 0.5
+  pts_ = df["pt"].map(lambda x: sv(x).upper()).tolist() if "pt" in df else [""] * n
   P = []; Lf = []; D = []
   for k in range(n):
     c = o[k]
@@ -284,8 +287,62 @@ def potentiel(df):
     if c in FOREST or c == "h": sc += 2.8 * min(1.0, dens[k] / 70.0)
     if c in FOREST: sc += 0.6 if dwet[k] <= 120 else 0.35 if dwet[k] <= 300 else 0.15 if dwet[k] <= 500 else 0
     if c == "p" and touchF[k] and touchC[k]: sc += 0.5
+    if c in FOREST and touchH[k] and pts_[k] in ("C", "D"): sc += 0.2   # butte ou pente au bord d'un milieu humide (savoir de chasseurs)
     P.append(round(min(10.0, max(0.0, sc)), 1)); Lf.append(1 if dens[k] >= 30 else 0); D.append(int(round(dens[k])))
   df["p"] = P; df["l"] = Lf; df["ld"] = D; df["v"] = [round(x, 2) for x in v]
+  try: secteur(df, G, rp, E, o, v)
+  except Exception: log("secteur ERREUR", traceback.format_exc()); df["q"] = None
+  try: routes(df, rp)
+  except Exception: log("routes ERREUR", traceback.format_exc()); df["rd"] = None
+
+def secteur(df, G, rp, E, o, v, pas=750.0, rayon=1262.0):
+  """Indice officiel de qualité d'habitat (Dussault et al. 2006) sur ~500 ha autour de chaque peuplement :
+     0,45 × nourriture (moyenne pondérée par la surface) + 0,55 × lisière (m/ha ÷ 30, max 1). Résultat sur 10."""
+  import shapely, numpy as np
+  FOODC = {"i": 0.4, "a": 0.15, "e": 0.05, "p": 0.3, "h": 0.1, "b": 0.1, "o": 0.1, "r": 0.05}
+  fc = np.array([(1.0 if v[k] >= 2.1 else 0.5) if o[k] == "n" else FOODC.get(o[k], 0.0) for k in range(len(o))])
+  use = np.array([c not in ("w", "x") for c in o]); A = shapely.area(G)
+  X = shapely.get_x(rp); Y = shapely.get_y(rp)
+  x0, y0, x1, y1 = X.min(), Y.min(), X.max(), Y.max()
+  gx = np.arange(x0, x1 + pas, pas); gy = np.arange(y0, y1 + pas, pas)
+  GX, GY = np.meshgrid(gx, gy); GP = shapely.points(GX.ravel(), GY.ravel())
+  tp = shapely.STRtree(rp); num_ = np.zeros(len(GP)); den = np.zeros(len(GP)); ed = np.zeros(len(GP))
+  EM = shapely.point_on_surface(E) if len(E) else None; EL = shapely.length(E) if len(E) else None
+  te_ = shapely.STRtree(EM) if len(E) else None
+  for c0 in range(0, len(GP), 2000):
+    circ = shapely.buffer(GP[c0:c0 + 2000], rayon, quad_segs=6)
+    gi, pi = tp.query(circ, predicate="contains")
+    w_ = A[pi] * use[pi]
+    num_ += np.bincount(gi + c0, weights=w_ * fc[pi], minlength=len(GP)); den += np.bincount(gi + c0, weights=w_, minlength=len(GP))
+    if te_ is not None:
+      gj, ej = te_.query(circ, predicate="contains")
+      ed += np.bincount(gj + c0, weights=EL[ej], minlength=len(GP))
+  sif = np.divide(num_, den, out=np.zeros_like(num_), where=den > 0)
+  sie = np.minimum(1.0, ed / (np.pi * rayon * rayon / 10000) / 30.0)
+  q = 10 * (0.45 * sif + 0.55 * sie)
+  ix = np.clip(np.round((X - x0) / pas).astype(int), 0, len(gx) - 1); iy = np.clip(np.round((Y - y0) / pas).astype(int), 0, len(gy) - 1)
+  df["q"] = np.round(q.reshape(len(gy), len(gx))[iy, ix], 1)
+
+def routes(df, rp):
+  """Distance à la route passante la plus proche (OpenStreetMap : autoroute, nationale, régionale, collectrice)."""
+  import shapely, numpy as np
+  if os.environ.get("SANS_RESEAU"): df["rd"] = None; return
+  b = df.total_bounds; q = (f'[out:json][timeout:180];way["highway"~"^(motorway|trunk|primary|secondary|tertiary)(_link)?$"]'
+       f'({b[1]:.4f},{b[0]:.4f},{b[3]:.4f},{b[2]:.4f});out geom;')
+  raw = None
+  for url in ("https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"):
+    try:
+      req = urllib.request.Request(url, data=("data=" + urllib.parse.quote(q)).encode(), headers=UA)
+      with urllib.request.urlopen(req, timeout=240) as r: raw = r.read(); break
+    except Exception as ex: log("routes", url, repr(ex))
+  if raw is None: df["rd"] = None; return
+  ways = [w_ for w_ in json.loads(raw).get("elements", []) if w_.get("geometry")]
+  log("routes passantes (OSM) :", len(ways))
+  if not ways: df["rd"] = None; return
+  L = gpd.GeoSeries([shapely.LineString([(g["lon"], g["lat"]) for g in w_["geometry"]]) for w_ in ways if len(w_["geometry"]) > 1], crs=4326).to_crs(32198).values
+  t = shapely.STRtree(L); qi, ti = t.query_nearest(rp, max_distance=1500, return_distance=False, all_matches=False)
+  d = np.full(len(rp), np.nan); d[qi] = shapely.distance(rp[qi], L[ti])
+  df["rd"] = [None if np.isnan(x) else int(round(x)) for x in d]
 
 def layer_of(path):
   lays = pyogrio.list_layers(path)
@@ -316,7 +373,7 @@ def process(fid, gpkg, bb=None):
   if bb and not os.environ.get("SANS_RESEAU"):
     try: maj_perturb(df, fid, bb)
     except Exception: log("maj_perturb ERREUR", traceback.format_exc())
-    try: gfi_enrich(df, fid, budget_s=int(os.environ.get("GFI_BUDGET", 150 * 60)))
+    try: gfi_enrich(df, fid, budget_s=int(os.environ.get("GFI_BUDGET", 70 * 60)))
     except Exception: log("gfi ERREUR", traceback.format_exc())
   keys = list(FIELDS) + ["vp", "cg", "st"]
   cs = [classe(r) for r in df[keys].to_dict("records")]
