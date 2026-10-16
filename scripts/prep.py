@@ -84,7 +84,8 @@ def classe(r):
   jeune = h_ in ("4", "5", "6", "7") or g_ in ("10", "30", "JIN", "JIR")
   if res and FEU.search(e) and jeune: return "n", 2
   # Repousse de résineux basse et ouverte (souvent un vieux brûlis) : zone de déplacement, pleine de pistes (terrain)
-  if res and h_ in ("5", "6", "7") and sv(r.get("d")).upper() != "A": return "p", 1
+  d_ = sv(r.get("d")).upper()
+  if res and ((h_ in ("5", "6", "7") and d_ != "A") or (h_ == "4" and d_ not in ("A", "B"))): return "p", 1
   if res:
     d = sv(r.get("d")).upper(); h = sv(r.get("h"))
     return ("a", 2) if (d in ("A", "B") and h in ("1", "2", "3", "4")) else ("r", 1)
