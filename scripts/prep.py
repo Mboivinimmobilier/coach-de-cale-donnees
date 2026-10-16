@@ -44,7 +44,7 @@ FIELDS = {
   "pt": [r"^CL_PENT$", r"PENT"],                                # classe de pente (A-F)
 }
 # Champs lus un peuplement à la fois au service de cartes (GetFeatureInfo) : absents du service WFS
-GFI_KEYS = {"co_ter": "te", "veg_pot": "vp", "couv_gaule": "cg", "st_ha_tot": "st"}
+GFI_KEYS = {"co_ter": "te", "veg_pot": "vp", "couv_gaule": "cg", "st_ha_tot": "st", "annotation": "an"}
 FEU = re.compile(r"BP|PE|PT|FI|FX|FN|ER|BJ|PEU|FT|PU|BB|AU")
 RES = re.compile(r"EN|EB|SB|SE|RX|RZ|PG|EE|EP|SS|ML|ME|TO|TH|PB|PR")
 DIST = re.compile(r"^(CT|CPR|CPRS|CRS|CRB|BR|BRU|CHT|ES|P|PL|PLN|CBA|CPH|CB|CPC|CPPTM|CPI_CP|REA|CBT|CMR)$")
@@ -78,6 +78,14 @@ def classe(r):
   e = sv(r.get("e")).upper(); tc = sv(r.get("tc")).upper()
   ori = sv(r.get("or")).upper(); ao = num(r.get("ao")); h = sv(r.get("h")); d = sv(r.get("d")).upper(); g = sv(r.get("g")).upper()
   cg = sv(r.get("cg")).upper(); st = r.get("st"); ds = sv(r.get("ds")).upper(); dr = sv(r.get("dr"))
+  an = sv(r.get("an")).upper(); hm = dp = None; pf = None
+  m_ = re.search(r"\*(\d+)%", an); dp = int(m_.group(1)) if m_ else None
+  m_ = re.search(r"(\d+(?:\.\d+)?)M\*", an); hm = float(m_.group(1)) if m_ else None
+  comp = re.findall(r"([A-Z]{2})(\d+)", an.split("*")[0]) if an else []
+  if comp: pf = sum(int(q) for c_, q in comp if FEU.search(c_)) / max(1, sum(int(q) for _, q in comp)) * 100
+  # Hauteur et densité exactes : on les ramène aux classes pour garder les mêmes règles, mais avec la vraie valeur
+  if hm is not None: h = "1" if hm >= 22 else "2" if hm >= 17 else "3" if hm >= 12 else "4" if hm >= 7 else "5" if hm >= 4 else "6" if hm >= 2 else "7"
+  if dp is not None: d = "A" if dp >= 80 else "B" if dp >= 60 else "C" if dp >= 40 else "D"
   # Terrains non forestiers (code de terrain lu au service de cartes)
   if EAU.match(te): return "w", 0.0, 0
   if te == "INO": return "h", 1.8, 3
@@ -101,7 +109,7 @@ def classe(r):
   if since is not None and since <= 45 and feu: return "n", 2.0, 2
   # Peuplements matures ou sans perturbation récente
   if tc == "M" or (not tc and feu and res):
-    if h in ("1", "2", "3") or g in VIEUX: return "i", 3.0 if SAPIN.search(e) else 2.7, 3
+    if h in ("1", "2", "3") or g in VIEUX: return "i", 3.0 if (SAPIN.search(e) or (pf is not None and pf >= 50)) else 2.7, 3
     return "n", 2.0, 2
   if feu and not res:
     return "n", 2.2 if h in ("5", "6", "7") else 2.0, 2
@@ -111,8 +119,8 @@ def classe(r):
     couvert = h in ("1", "2", "3", "4") and (d in ("A", "B") or (stv is not None and stv >= 13))
     if couvert: return ("a", 2.4, 2) if SAPIN.search(e) else ("e", 1.5, 2)
     # Gaules feuillues sous un résineux ouvert (5e inventaire) : brout à portée de l'orignal
-    if cg[:2] in ("1F", "2F"): return "n", 1.8, 2
-    if cg[:2] in ("1M", "2M"): return "n", 1.6, 2
+    if re.search(r"F", cg) and re.search(r"[12]", cg): return "n", 1.8, 2
+    if re.search(r"M", cg) and re.search(r"[12]", cg): return "n", 1.6, 2
     if FEU.search(e) and h in ("4", "5", "6", "7"): return "n", 1.8, 2   # RXFX, ENFX… jeunes
     if h in ("4", "5", "6", "7"): return "p", 1.2, 0
     return "r", 0.5, 0
@@ -369,19 +377,19 @@ def process(fid, gpkg, bb=None):
   for k in FIELDS:
     if k not in df: df[k] = None
   df = df.to_crs(4326).reset_index(drop=True)
-  for k in ("vp", "cg", "st"): df[k] = None
+  for k in ("vp", "cg", "st", "an"): df[k] = None
   if bb and not os.environ.get("SANS_RESEAU"):
     try: maj_perturb(df, fid, bb)
     except Exception: log("maj_perturb ERREUR", traceback.format_exc())
     try: gfi_enrich(df, fid, budget_s=int(os.environ.get("GFI_BUDGET", 70 * 60)))
     except Exception: log("gfi ERREUR", traceback.format_exc())
-  keys = list(FIELDS) + ["vp", "cg", "st"]
+  keys = list(FIELDS) + ["vp", "cg", "st", "an"]
   cs = [classe(r) for r in df[keys].to_dict("records")]
   recs = df[keys].to_dict("records")
   df["o"] = [c[0] for c in cs]; df["s"] = [c[2] for c in cs]; df["v"] = [mult(r, c[0], c[1]) for r, c in zip(recs, cs)]
   potentiel(df)
   df["st"] = df["st"].map(lambda x: sv(x) or None)
-  for k in list(FIELDS) + ["vp", "cg"]:
+  for k in list(FIELDS) + ["vp", "cg", "an"]:
     if k in ("ao", "ap"): df[k] = df[k].map(lambda v: num(v) or None).astype("Int64")
     else: df[k] = df[k].map(lambda v: re.sub(r"\.0$", "", sv(v)) or None).astype("object")
   with open(f"{OUT}/schema-{fid}.txt", "a") as f:
