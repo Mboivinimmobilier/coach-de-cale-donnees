@@ -338,6 +338,28 @@ def secteur(df, G, rp, E, o, v, pas=750.0, rayon=1262.0):
   df["q"] = np.round(q.reshape(len(gy), len(gx))[iy, ix], 1)
 
 ROUTES_OUT = {}
+LEVES_OUT = {}
+SGM_WFS = "https://servicesvectoriels.atlas.gouv.qc.ca/IDS_SGM_WFS/service.svc/get"
+AIR = re.compile(r"air|heli|hélic|aéro|aero|dighem|geotem|vtem|mobile ?mt|drone|uav|falcon|gradiometer|borehole|forage|en puits|infinitem|ztem|spectrom", re.I)
+SOL = re.compile(r"induced polari|polarisation|\bIP\b|ground|au sol|line ?cut|coupe de ligne|lignes? coupée|grid|grille|magnetometer|magnétom|\bVLF\b|beep ?mat|horizontal loop|max-?min|gravim|\bEM\b|pulse|time domain|résistivit|resistivit", re.I)
+def leves(bb):
+  """Levés géophysiques déposés au gouvernement (SIGÉOM, rapports GM) : on garde ceux faits au sol, qui demandent
+     souvent de couper des lignes droites (grilles aux 100 m), et ceux dont le type est inconnu."""
+  s_, w, n, e = bb; out = []
+  for typ in ("SGM:Dem_geophysique_adn", "SGM:Dem_geophysique"):
+    q = (f"{SGM_WFS}?service=WFS&version=2.0.0&request=GetFeature&typeNames={typ}&count=5000&srsName=EPSG:4326"
+         f"&bbox={s_},{w},{n},{e},urn:ogc:def:crs:EPSG::4326&outputFormat=application/json")
+    try: j = json.loads(get(q, tries=3).decode("utf-8", "replace"))
+    except Exception as ex: log("levés", typ, repr(ex)); continue
+    for f in j.get("features", []):
+      pr = f.get("properties") or {}; t = sv(pr.get("TITRE_DOCM"))
+      fort = re.search(r"ground|au sol|line ?cut|coupe de ligne|lignes? coupée|grid|grille|induced polari|polarisation|\bIP\b", t, re.I)
+      if AIR.search(t) and not fort: continue
+      k = "sol" if (fort or SOL.search(t)) else "?"
+      out.append({"type": "Feature", "geometry": f.get("geometry"), "properties": {"k": k, "t": t[:140], "a": sv(pr.get("AN_PUBL")) or None,
+        "gm": sv(pr.get("NUMR_RAPR")) or None, "u": sv(pr.get("HYPERLIEN")) or None, "c": sv(pr.get("COMPAGNIES"))[:80] or None}})
+  log("levés géophysiques au sol ou possibles :", len(out), "sur", "2 couches")
+  return out
 def routes(df, rp):
   """Routes et chemins d'OpenStreetMap. k : p = route passante (autoroute à collectrice), f = chemin (forestier, local),
      s = sentier ou chemin d'hiver. rd = distance du peuplement à la route passante la plus proche (m)."""
@@ -398,6 +420,8 @@ def process(fid, gpkg, bb=None):
   if bb and not os.environ.get("SANS_RESEAU"):
     try: maj_perturb(df, fid, bb)
     except Exception: log("maj_perturb ERREUR", traceback.format_exc())
+    try: LEVES_OUT["feats"] = leves(bb)
+    except Exception: log("levés ERREUR", traceback.format_exc())
     try: gfi_enrich(df, fid, budget_s=int(os.environ.get("GFI_BUDGET", 70 * 60)))
     except Exception: log("gfi ERREUR", traceback.format_exc())
   keys = list(FIELDS) + ["vp", "cg", "st", "an"]
@@ -432,6 +456,13 @@ def process(fid, gpkg, bb=None):
   cmd = ["tippecanoe", "-o", out, "--force", "-Z", "10", "-z", "15", "--coalesce-smallest-as-needed", "--detect-shared-borders",
          "--simplify-only-low-zooms", "--no-tile-stats", "-q", "-P", "-L", "pee:" + nd]
   if rdf: cmd += ["-L", "routes:" + rdf]
+  if LEVES_OUT.get("feats"):
+    lv = f"{TMP}/{fid}-leves.geojsonl"
+    with open(lv, "w") as f:
+      for ft in LEVES_OUT["feats"]:
+        if ft.get("geometry"): f.write(json.dumps(ft) + "\n")
+    cmd += ["-L", "leves:" + lv]
+  LEVES_OUT.clear()
   subprocess.run(cmd, check=True)
   b = df.total_bounds
   return {"id": fid, "url": f"{fid}.pmtiles", "bbox": [round(float(x), 4) for x in b], "taille": os.path.getsize(out), "entites": int(len(df)), "champs": m}
