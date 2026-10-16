@@ -195,8 +195,8 @@ def maj_perturb(df, nom, bb):
     j = gpd.sjoin(gpd.GeoDataFrame(geometry=pts, crs=4326), g, predicate="within", how="inner")
     for idx, row in j.iterrows():
       o2 = sv(row.get("origine")).upper(); a2 = num(row.get("an_origine")); p2 = sv(row.get("perturb")).upper(); b2 = num(row.get("an_perturb"))
-      if o2 and a2 and a2 > (num(df.at[idx, "ao"]) or 0): df.at[idx, "or"] = o2; df.at[idx, "ao"] = a2; nmaj += 1
-      elif p2 and b2 and b2 > (num(df.at[idx, "ap"]) or 0): df.at[idx, "pe"] = p2; df.at[idx, "ap"] = b2; nmaj += 1
+      if o2 and a2 and a2 > (num(df.at[idx, "ao"]) or 0): df.at[idx, "or"] = o2; df.at[idx, "ao"] = str(int(a2)); nmaj += 1
+      elif p2 and b2 and b2 > (num(df.at[idx, "ap"]) or 0): df.at[idx, "pe"] = p2; df.at[idx, "ap"] = str(int(b2)); nmaj += 1
   log(nom, "mises à jour de perturbations :", nmaj)
 
 # ---- Données détaillées du 5e inventaire (code de terrain, végétation potentielle, gaules, surface terrière)
@@ -368,11 +368,14 @@ def routes(df, rp):
   b = df.total_bounds; q = (f'[out:json][timeout:240];way["highway"~"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|track|path|bridleway)(_link)?$"]'
        f'({b[1]:.4f},{b[0]:.4f},{b[3]:.4f},{b[2]:.4f});out geom tags;')
   raw = None
-  for url in ("https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"):
+  hdr = {"User-Agent": "CoachDeCale/1.0 (carte de chasse; +https://coach-de-cale.netlify.app)", "Accept": "application/json,*/*",
+         "Content-Type": "application/x-www-form-urlencoded"}
+  for url in ("https://overpass-api.de/api/interpreter", "https://overpass.private.coffee/api/interpreter",
+              "https://maps.mail.ru/osm/tools/overpass/api/interpreter", "https://overpass.kumi.systems/api/interpreter") * 2:
     try:
-      req = urllib.request.Request(url, data=("data=" + urllib.parse.quote(q)).encode(), headers=UA)
+      req = urllib.request.Request(url, data=("data=" + urllib.parse.quote(q)).encode(), headers=hdr)
       with urllib.request.urlopen(req, timeout=300) as r: raw = r.read(); break
-    except Exception as ex: log("routes", url, repr(ex))
+    except Exception as ex: log("routes", url, repr(ex)); time.sleep(20)
   if raw is None: df["rd"] = None; return
   feats = []; passant = []
   for w_ in json.loads(raw).get("elements", []):
