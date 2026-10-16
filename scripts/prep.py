@@ -142,6 +142,12 @@ def mult(r, o, v):
     elif vp in ("RS3", "RE3"): v *= 0.5
     elif vp in ("RE1", "TOB"): v *= 0.3
   if pt in ("E", "F"): v *= 0.5
+  # Quelques feuillus dans un résineux (ex. EN90PT10 noté « ENEN ») : un peu de brout en plus
+  an = sv(r.get("an")).upper(); comp = re.findall(r"([A-Z]{2})(\d+)", an.split("*")[0]) if an else []
+  if comp and o in ("a", "e", "p", "r"):
+    pf = sum(int(q) for c_, q in comp if FEU.search(c_)) / max(1, sum(int(q) for _, q in comp)) * 100
+    if pf >= 20: v *= 1.15
+    elif pf >= 10: v *= 1.08
   return min(3.0, v)
 
 
