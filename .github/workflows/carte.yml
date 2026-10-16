@@ -29,6 +29,12 @@ jobs:
           sudo apt-get update -qq && sudo apt-get install -y -qq build-essential libsqlite3-dev zlib1g-dev
           git clone --depth 1 https://github.com/felt/tippecanoe.git /tmp/tippecanoe
           make -C /tmp/tippecanoe -j4 >/dev/null && sudo make -C /tmp/tippecanoe install >/dev/null
+      - name: Cache des détails du 5e inventaire (reprend là où la dernière préparation s'est arrêtée)
+        uses: actions/cache@v4
+        with:
+          path: cache
+          key: gfi-${{ github.run_id }}
+          restore-keys: gfi-
       - name: Préparer les feuillets
         run: python scripts/prep.py
       - name: Page d'accueil

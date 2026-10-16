@@ -41,7 +41,10 @@ FIELDS = {
   "te": [r"^CO_TER$", r"^TYPE_TER$", r"TER(?!R)"],              # terrain non forestier (eau, dénudé humide, aulnaie…)
   "dr": [r"^CL_DRAI$", r"DRAI"],                                # drainage (50-69 = mauvais à très mauvais)
   "ds": [r"^DEP_SUR$", r"DEP_?SUR"],                            # dépôt de surface (7 = organique : tourbière)
+  "pt": [r"^CL_PENT$", r"PENT"],                                # classe de pente (A-F)
 }
+# Champs lus un peuplement à la fois au service de cartes (GetFeatureInfo) : absents du service WFS
+GFI_KEYS = {"co_ter": "te", "veg_pot": "vp", "couv_gaule": "cg", "st_ha_tot": "st"}
 FEU = re.compile(r"BP|PE|PT|FI|FX|FN|ER|BJ|PEU|FT|PU|BB|AU")
 RES = re.compile(r"EN|EB|SB|SE|RX|RZ|PG|EE|EP|SS|ML|ME|TO|TH|PB|PR")
 DIST = re.compile(r"^(CT|CPR|CPRS|CRS|CRB|BR|BRU|CHT|ES|P|PL|PLN|CBA|CPH|CB|CPC|CPPTM|CPI_CP|REA|CBT|CMR)$")
@@ -60,53 +63,94 @@ def sv(v):
 def num(v):
   t = sv(v); m = re.match(r"^(\d{4})", t); return int(m.group(1)) if m else 0
 
+# ---- Classes « orignal » (automne), d'après le rapport « Orignal et carte écoforestière » (Courtois et al. 2002,
+# Dussault et al. 2006 IQH, Potvin et al. 2004…). v = valeur de la classe sur 3.
+# i idéal (mixte mature) · a abri avec sapin · e abri d'épinette noire · n nourriture · h humide riche · b humide pauvre
+# p passage (résineux bas ou clairsemé) · o ouvert récent · r résineux peu utile · w eau · x non forestier / inconnu
+DIST2 = re.compile(r"^(CT|CPR|CPRS|CPRS_U|CPPTM|CPPTM_U|CPH|CPT|CDV|CTSP|CTSP_U|CTSP_T|CBA|CB|CEF|CRS|CRB|CRR|ETR|REA|RIA|RPS|BR|BRU|CHT|ES|DT|VER|P|PL|PLN|ENS|PRR|CPC|CPI_CP|CBT|CMR)")
+PLANT = re.compile(r"^(P|PL|PLN|PRR|ENS)$")
+SAPIN = re.compile(r"SB|SE|EB")
+PUR_EN = re.compile(r"^((EN|PG|RX|RZ|ML|PI|EP|ME|MH|MJ)+)$")
+VIEUX = ("50", "70", "90", "110", "120", "130", "VIN", "VIR")
+NONFOR = re.compile(r"^(A|AF|ANT|GR|RO|LTE|ILE|NF|NX|NE)$")
 def classe(r):
-  """Classe orignal : i=idéal (mixte), n=nourriture (feuillus / repousse), a=abri (résineux dense),
-     h=humide, o=ouvert récent (trop jeune), p=passage (repousse résineuse basse et ouverte), r=résineux peu utile, w=eau, x=inconnu. s = note 0 à 3."""
-  te = sv(r.get("te")).upper()
-  if EAU.match(te): return "w", 0
-  if HUMIDE.match(te): return "h", 2
+  te = sv(r.get("te")).upper(); vp = sv(r.get("vp")).upper()
   e = sv(r.get("e")).upper(); tc = sv(r.get("tc")).upper()
+  ori = sv(r.get("or")).upper(); ao = num(r.get("ao")); h = sv(r.get("h")); d = sv(r.get("d")).upper(); g = sv(r.get("g")).upper()
+  cg = sv(r.get("cg")).upper(); st = r.get("st"); ds = sv(r.get("ds")).upper(); dr = sv(r.get("dr"))
+  # Terrains non forestiers (code de terrain lu au service de cartes)
+  if EAU.match(te): return "w", 0.0, 0
+  if te in ("INO", "AL"): return "h", 1.8, 3
+  if te == "DH": return ("b", 1.0, 1) if vp.startswith("TOB") else ("h", 1.8, 3) if vp[:3] in ("TOF", "MA1") else ("h", 1.5, 2)
+  if te == "DS": return "r", 0.5, 0
+  if NONFOR.match(te): return "x", 0.0, 0
   feu = tc in ("F", "M") or (not tc and bool(FEU.search(e))); res = tc in ("R", "M") or (not tc and bool(RES.search(e)))
-  ori = sv(r.get("or")).upper(); ao = num(r.get("ao"))
-  since = YEAR - ao if (ao and DIST.match(ori)) else None
-  if since is not None and since < 5: return "o", 1
-  # Terrain sans couvert forestier : tourbière / dénudé humide (dépôt organique ou mauvais drainage), sinon eau, agricole, chemin…
-  if not tc and not e and (since is None or since > 30):
-    ds = sv(r.get("ds")).upper(); dr = sv(r.get("dr"))
-    if ds.startswith("7") or (dr[:1] in ("5", "6")): return "h", 2
-    return "x", 0
-  if since is not None and since <= 30: return ("i", 3) if (feu and res) else ("n", 3 if since >= 10 else 2)
-  if feu and res: return "i", 3
-  if feu: return "n", 2
-  # Résineux en régénération mêlés de feuillus (RXFX, ENFX…) : jeune repousse = nourriture
-  h_ = sv(r.get("h")); g_ = sv(r.get("g")).upper()
-  jeune = h_ in ("4", "5", "6", "7") or g_ in ("10", "30", "JIN", "JIR")
-  if res and FEU.search(e) and jeune: return "n", 2
-  # Repousse de résineux basse et ouverte (souvent un vieux brûlis) : zone de déplacement, pleine de pistes (terrain)
-  d_ = sv(r.get("d")).upper()
-  if res and ((h_ in ("5", "6", "7") and d_ != "A") or (h_ == "4" and d_ not in ("A", "B"))): return "p", 1
+  since = YEAR - ao if (ao and DIST2.match(ori)) else None
+  if since is not None and since < 5: return "o", 0.9, 1
+  if not tc and not e:   # pas de peuplement : milieu humide ou terrain ouvert
+    if vp.startswith("TOB") or vp[:3] in ("RE3", "RS3"): return "b", 1.0, 1
+    if ds.startswith("7") or dr[:1] in ("5", "6"): return ("h", 1.8, 3) if vp[:3] in ("TOF", "MA1") else ("h", 1.5, 2)
+    return "x", 0.0, 0
+  pur = bool(PUR_EN.match(e)) and not SAPIN.search(e)
+  if since is not None and since < 10:   # 5-10 ans : transition, le brout monte (seuils atteints vers 10 ans en mixte)
+    return ("n", 1.4, 1) if feu else ("o", 0.9, 1)
+  if since is not None and since <= 25:  # fenêtre utile de la repousse
+    if feu: return "n", 2.2 * (0.6 if pur else 1), 2
+    return "p", 1.2, 0
+  if since is not None and since <= 45 and feu: return "n", 2.0, 2
+  # Peuplements matures ou sans perturbation récente
+  if tc == "M" or (not tc and feu and res):
+    if h in ("1", "2", "3") or g in VIEUX: return "i", 3.0 if SAPIN.search(e) else 2.7, 3
+    return "n", 2.0, 2
+  if feu and not res:
+    return "n", 2.2 if h in ("5", "6", "7") else 2.0, 2
   if res:
-    d = sv(r.get("d")).upper(); h = sv(r.get("h"))
-    return ("a", 2) if (d in ("A", "B") and h in ("1", "2", "3", "4")) else ("r", 1)
-  return "x", 0
+    try: stv = float(st) if st not in (None, "") else None
+    except (TypeError, ValueError): stv = None
+    couvert = h in ("1", "2", "3", "4") and (d in ("A", "B") or (stv is not None and stv >= 13))
+    if couvert: return ("a", 2.4, 2) if SAPIN.search(e) else ("e", 1.5, 2)
+    # Gaules feuillues sous un résineux ouvert (5e inventaire) : brout à portée de l'orignal
+    if cg[:2] in ("1F", "2F"): return "n", 1.8, 2
+    if cg[:2] in ("1M", "2M"): return "n", 1.6, 2
+    if FEU.search(e) and h in ("4", "5", "6", "7"): return "n", 1.8, 2   # RXFX, ENFX… jeunes
+    if h in ("4", "5", "6", "7"): return "p", 1.2, 0
+    return "r", 0.5, 0
+  return "x", 0.0, 0
+
+def mult(r, o, v):
+  """Modificateurs : plantation, éclaircie précommerciale, épidémie légère, station, pente forte."""
+  if v <= 0: return v
+  ori = sv(r.get("or")).upper(); ao = num(r.get("ao")); pe = sv(r.get("pe")).upper(); ap = num(r.get("ap"))
+  vp = sv(r.get("vp")).upper()[:3]; dr = sv(r.get("dr")); h = sv(r.get("h")); pt = sv(r.get("pt")).upper()
+  since = YEAR - ao if ao else None
+  if PLANT.match(ori) and since is not None and since <= 30 and o in ("n", "p"): v *= 0.7
+  if pe.startswith("EPC") and ap and YEAR - ap <= 15 and o in ("n", "i"): v *= 0.8
+  if pe == "EL": v *= 1.1
+  jeune = (since is not None and since <= 30) or h in ("5", "6", "7")
+  if jeune and o in ("n", "i", "p"):
+    if vp in ("MS2", "ME1") or dr == "31": v *= 1.15
+    elif vp == "RE2": v *= 0.8
+    elif vp in ("RS3", "RE3"): v *= 0.5
+    elif vp in ("RE1", "TOB"): v *= 0.3
+  if pt in ("E", "F"): v *= 0.5
+  return min(3.0, v)
 
 
-def wfs_zone(nom, s_, w, n, e, step=0.05):
-  """Télécharge les peuplements d'une zone par petits carreaux (service WFS), sans doublons."""
+def wfs_zone(nom, s_, w, n, e, step=0.05, typ="ori_pee_close_scale", suffix=""):
+  """Télécharge une couche WFS d'une zone par petits carreaux, sans doublons."""
   feats = {}; lat = s_; k = 0; fails = 0
   while lat < n:
     lon = w
     while lon < e:
       start = 0
       while True:
-        q = (f"{WFS}?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ori_pee_close_scale&SRSNAME=EPSG:4326"
+        q = (f"{WFS}?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:{typ}&SRSNAME=EPSG:4326"
              f"&BBOX={lat:.4f},{lon:.4f},{min(lat+step,n):.4f},{min(lon+step,e):.4f},urn:ogc:def:crs:EPSG::4326"
              f"&COUNT=2000&STARTINDEX={start}&OUTPUTFORMAT=application/json;%20subtype=geojson;%20charset=iso-8859-1")
         try:
           raw = get(q, tries=5); j = json.loads(raw.decode("iso-8859-1"))
         except Exception as ex:
-          fails += 1; log("carreau raté", lat, lon, repr(ex)); break
+          fails += 1; log("carreau raté", typ, lat, lon, repr(ex)); break
         fs = j.get("features", [])
         for f in fs:
           fid = f.get("properties", {}).get("ogc_fid") or f.get("id")
@@ -115,35 +159,133 @@ def wfs_zone(nom, s_, w, n, e, step=0.05):
         if len(fs) < 2000: break
         start += 2000
       lon += step; time.sleep(0.2)
-    log(nom, f"lat {lat:.2f} : {len(feats)} peuplements, {k} requêtes, {fails} ratés"); lat += step
-  path = f"{TMP}/{nom}.geojson"
+    if typ == "ori_pee_close_scale": log(nom, f"lat {lat:.2f} : {len(feats)} peuplements, {k} requêtes, {fails} ratés")
+    lat += step
+  if typ != "ori_pee_close_scale": log(nom, typ, len(feats), "entités", fails, "ratés")
+  path = f"{TMP}/{nom}{suffix}.geojson"
   json.dump({"type": "FeatureCollection", "features": list(feats.values())}, open(path, "w"))
   return path
 
-VAL = {"i": 3.0, "a": 1.4, "h": 2.0, "o": 0.9, "p": 1.7, "r": 0.6, "x": 0.0, "w": 0.0}
+# ---- Cartes à jour : coupes, feux et autres perturbations plus récentes que la photo du peuplement
+def maj_perturb(df, nom, bb):
+  """bb = (s, w, n, e). Remplace origine/année (ou perturbation partielle) par la plus récente qui couvre le peuplement."""
+  s_, w, n, e = bb; pts = df.geometry.representative_point(); nmaj = 0
+  for typ in ("ca_interv_for_close_scale", "ca_feu_close_scale", "ca_perturb_autre_close_scale"):
+    try:
+      g = gpd.read_file(wfs_zone(nom, s_, w, n, e, step=0.1, typ=typ, suffix="_" + typ), engine="pyogrio")
+    except Exception as ex:
+      log("maj", typ, "impossible", repr(ex)); continue
+    if g.empty: continue
+    g = g.set_crs(4326, allow_override=True)
+    j = gpd.sjoin(gpd.GeoDataFrame(geometry=pts, crs=4326), g, predicate="within", how="inner")
+    for idx, row in j.iterrows():
+      o2 = sv(row.get("origine")).upper(); a2 = num(row.get("an_origine")); p2 = sv(row.get("perturb")).upper(); b2 = num(row.get("an_perturb"))
+      if o2 and a2 and a2 > (num(df.at[idx, "ao"]) or 0): df.at[idx, "or"] = o2; df.at[idx, "ao"] = a2; nmaj += 1
+      elif p2 and b2 and b2 > (num(df.at[idx, "ap"]) or 0): df.at[idx, "pe"] = p2; df.at[idx, "ap"] = b2; nmaj += 1
+  log(nom, "mises à jour de perturbations :", nmaj)
+
+# ---- Données détaillées du 5e inventaire (code de terrain, végétation potentielle, gaules, surface terrière)
+GFI_CACHE = "cache"
+def gfi_enrich(df, nom, budget_s=150 * 60, threads=8):
+  import concurrent.futures as cf
+  os.makedirs(GFI_CACHE, exist_ok=True); cpath = f"{GFI_CACHE}/gfi-{nom}.json"
+  try: cache = json.load(open(cpath))
+  except Exception: cache = {}
+  tc = df["tc"].map(sv).str.upper(); h = df["h"].map(sv)
+  need = ~((tc.isin(["F", "M"])) & (h.isin(["1", "2", "3"])))   # les feuillus et mixtes matures n'en ont pas besoin
+  p3857 = df.to_crs(3857).geometry.representative_point()
+  todo = [(str(df.at[i, "fid"]), p3857[i].x, p3857[i].y) for i in df.index[need] if str(df.at[i, "fid"]) not in cache]
+  log(nom, "détails à lire :", len(todo), "(", len(cache), "déjà en cache )")
+  t0 = time.time()
+  def one(t):
+    fid, x, y = t
+    if time.time() - t0 > budget_s: return fid, None
+    q = (f"{WFS}?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetFeatureInfo&LAYERS=ori_pee_close_scale&QUERY_LAYERS=ori_pee_close_scale&STYLES="
+         f"&CRS=EPSG:3857&BBOX={x-15:.1f},{y-15:.1f},{x+15:.1f},{y+15:.1f}&WIDTH=31&HEIGHT=31&I=15&J=15&INFO_FORMAT=text/plain&FEATURE_COUNT=3")
+    txt = None
+    for k_ in range(3):
+      try:
+        with urllib.request.urlopen(urllib.request.Request(q, headers=UA), timeout=40) as rr: txt = rr.read().decode("utf-8", "replace"); break
+      except Exception: time.sleep(2 * (k_ + 1))
+    if txt is None: return fid, None
+    best = {}; cur = None
+    for line in txt.splitlines():
+      mm = re.match(r"\s*Feature (\d+):", line)
+      if mm: cur = {}; continue
+      mm = re.match(r"\s*([a-z_0-9]+) = '(.*)'\s*$", line)
+      if mm and cur is not None:
+        cur[mm.group(1)] = mm.group(2)
+        if mm.group(1) == "ogc_fid" and mm.group(2) == fid: best = cur
+        elif not best and mm.group(1) == "ogc_fid": best = cur
+    return fid, {k: best.get(k, "") for k in GFI_KEYS} if best else {}
+  done = 0
+  with cf.ThreadPoolExecutor(threads) as ex:
+    for fid, val in ex.map(one, todo):
+      if val is not None: cache[fid] = val; done += 1
+      if done and done % 5000 == 0: json.dump(cache, open(cpath, "w")); log(nom, "détails lus :", done)
+  json.dump(cache, open(cpath, "w"))
+  log(nom, "détails lus cette fois :", done, "en", int(time.time() - t0), "s ; total en cache :", len(cache))
+  for k, col in GFI_KEYS.items():
+    vals = df["fid"].map(lambda f: (cache.get(str(f)) or {}).get(k, ""))
+    if col == "te": df[col] = [v if v else old for v, old in zip(vals, df[col] if col in df else [None] * len(df))]
+    else: df[col] = vals
+
 def potentiel(df):
-  """Note « Où c'est bon » de 0 à 10 par peuplement : sa propre valeur + ses voisins.
-     Lisière = voisin complémentaire (nourriture à côté d'abri, ou l'inverse); un milieu humide voisin ajoute un peu."""
-  m = df.to_crs(32198); g = m.geometry.buffer(2)
-  L, R = m.sindex.query(g, predicate="intersects")
-  o = df["o"].tolist(); s_ = df["s"].tolist(); n = len(df)
-  food = lambda c: c in ("n", "i"); cover = lambda c: c in ("a", "i")
-  nb = [0] * n; comp = [0] * n; hum = [0] * n; fc = [0] * n
-  for a, b in zip(L, R):
-    if a == b: continue
-    nb[a] += 1
-    if (food(o[a]) and cover(o[b]) and o[a] != o[b]) or (cover(o[a]) and food(o[b]) and o[a] != o[b]): comp[a] += 1
-    if o[b] == "h": hum[a] += 1
-    if o[b] in ("n", "i", "a"): fc[a] += 1
-  P = []; Lf = []
+  """Note orignal de 0 à 10 par peuplement (automne) :
+     valeur de la classe (sur 3) × 6, puis + lisière nourriture-abri dans ~10 ha (max 2,8)
+     + milieu humide ou rive proche (max 0,6) + passage qui relie nourriture et abri (0,5)."""
+  import shapely
+  m = df.to_crs(32198); G = m.geometry.values
+  bad = ~shapely.is_valid(G)
+  if bad.any(): G = G.copy(); G[bad] = shapely.make_valid(G[bad])
+  o = df["o"].tolist(); v = df["v"].astype(float).tolist(); n = len(df)
+  FOOD = ("n", "i"); COVER = ("a", "e", "i"); FOREST = ("i", "a", "e", "n", "p")
+  tree = shapely.STRtree(G)
+  L, Rr = tree.query(shapely.buffer(G, 2), predicate="intersects")
+  touchF = [False] * n; touchC = [False] * n; pa = []; pb = []
+  for a_, b_ in zip(L, Rr):
+    if a_ == b_: continue
+    if o[b_] in FOOD: touchF[a_] = True
+    if o[b_] in COVER: touchC[a_] = True
+    if a_ < b_ and o[a_] != o[b_] and ((o[a_] in FOOD and o[b_] in COVER) or (o[a_] in COVER and o[b_] in FOOD)): pa.append(a_); pb.append(b_)
+  # Lisières nourriture-abri (lignes partagées)
+  if pa:
+    E = shapely.intersection(shapely.boundary(G[pa]), shapely.buffer(G[pb], 2))
+    E = E[~shapely.is_empty(E)]
+  else: E = shapely.from_wkt([])
+  rp = shapely.point_on_surface(G); circ = shapely.buffer(rp, 180, quad_segs=8); AREA_HA = 3.14159 * 180 * 180 / 10000
+  dens = [0.0] * n
+  if len(E):
+    et = shapely.STRtree(E); ci, ei = et.query(circ, predicate="intersects")
+    ln = shapely.length(shapely.intersection(E[ei], circ[ci]))
+    for c_, l_ in zip(ci, ln): dens[c_] += l_
+    dens = [d_ / AREA_HA for d_ in dens]
+  # Milieux humides et rives
+  hum_idx = [k for k in range(n) if o[k] in ("h", "w")]
+  dwet = [9e9] * n
+  if hum_idx:
+    ht = shapely.STRtree(G[hum_idx]); fi = [k for k in range(n) if o[k] in FOREST]
+    if fi:
+      qi, ti = ht.query_nearest(G[fi], max_distance=500, return_distance=False, all_matches=False)
+      dd = shapely.distance(G[fi][qi], G[hum_idx][ti])
+      for q_, d_ in zip(qi, dd): dwet[fi[q_]] = min(dwet[fi[q_]], d_)
+  # Centre des coupes récentes : plus de 200 m de tout couvert ou repousse
+  oi = [k for k in range(n) if o[k] == "o"]; ci_ = [k for k in range(n) if o[k] in ("i", "a", "e", "n", "p")]
+  if oi and ci_:
+    ct = shapely.STRtree(G[ci_]); qi, ti = ct.query_nearest(rp[oi], max_distance=200, return_distance=False, all_matches=False)
+    near = set(oi[q_] for q_ in qi)
+    for k in oi:
+      if k not in near: v[k] = 0.5
+  P = []; Lf = []; D = []
   for k in range(n):
-    c = o[k]; v = (2.8 if s_[k] >= 3 else 2.2) if c == "n" else VAL.get(c, 0.0)
-    f = comp[k] / nb[k] if nb[k] else 0.0
-    p = v / 3 * 7.2 + (2.2 * min(1.0, f * 1.6) if c in ("n", "i", "a") else 0) + (0.6 if hum[k] and c in ("n", "i", "a") else 0)
-    if c == "p" and nb[k]: p += 1.5 * min(1.0, fc[k] / nb[k] * 1.5)  # passage qui relie nourriture et abri
-    if c in ("x", "w"): p = 0
-    P.append(int(round(min(10, max(0, p))))); Lf.append(1 if f >= 0.3 else 0)
-  df["p"] = P; df["l"] = Lf
+    c = o[k]
+    if c in ("x", "w"): P.append(0.0); Lf.append(0); D.append(0); continue
+    sc = v[k] / 3 * 6.0
+    if c in FOREST or c == "h": sc += 2.8 * min(1.0, dens[k] / 70.0)
+    if c in FOREST: sc += 0.6 if dwet[k] <= 120 else 0.35 if dwet[k] <= 300 else 0.15 if dwet[k] <= 500 else 0
+    if c == "p" and touchF[k] and touchC[k]: sc += 0.5
+    P.append(round(min(10.0, max(0.0, sc)), 1)); Lf.append(1 if dens[k] >= 30 else 0); D.append(int(round(dens[k])))
+  df["p"] = P; df["l"] = Lf; df["ld"] = D; df["v"] = [round(x, 2) for x in v]
 
 def layer_of(path):
   lays = pyogrio.list_layers(path)
@@ -155,30 +297,43 @@ def layer_of(path):
       if not best or score > best[0]: best = (score, name)
   return best[1] if best else lays[0][0]
 
-def process(fid, gpkg):
+def process(fid, gpkg, bb=None):
   lay = layer_of(gpkg) if gpkg.endswith(".gpkg") else pyogrio.list_layers(gpkg)[0][0]
   info = pyogrio.read_info(gpkg, layer=lay); cols = list(info["fields"])
-  m = {k: pick(cols, v) for k, v in FIELDS.items()}
+  m = {k: pick(cols, v) for k, v in FIELDS.items()}; idc = pick(cols, [r"^ogc_fid$", r"^OBJECTID$", r"^GEOCODE$"])
   with open(f"{OUT}/schema-{fid}.txt", "w") as f:
     f.write(f"couche: {lay}\nentités: {info['features']}\ncrs: {info['crs']}\nchamps: {cols}\ncorrespondance: {json.dumps(m)}\n")
   log(fid, "couche", lay, info["features"], "entités", json.dumps(m))
-  use = [c for c in m.values() if c]
+  use = [c for c in m.values() if c] + ([idc] if idc else [])
   df = gpd.read_file(gpkg, layer=lay, columns=use, engine="pyogrio")
   df = df.rename(columns={v: k for k, v in m.items() if v})
+  if idc: df = df.rename(columns={idc: "fid"})
+  else: df["fid"] = range(len(df))
   for k in FIELDS:
     if k not in df: df[k] = None
-  df = df.to_crs(4326)
-  cs = [classe(r) for r in df[list(FIELDS)].to_dict("records")]
-  df["o"] = [c[0] for c in cs]; df["s"] = [c[1] for c in cs]
+  df = df.to_crs(4326).reset_index(drop=True)
+  for k in ("vp", "cg", "st"): df[k] = None
+  if bb and not os.environ.get("SANS_RESEAU"):
+    try: maj_perturb(df, fid, bb)
+    except Exception: log("maj_perturb ERREUR", traceback.format_exc())
+    try: gfi_enrich(df, fid, budget_s=int(os.environ.get("GFI_BUDGET", 150 * 60)))
+    except Exception: log("gfi ERREUR", traceback.format_exc())
+  keys = list(FIELDS) + ["vp", "cg", "st"]
+  cs = [classe(r) for r in df[keys].to_dict("records")]
+  recs = df[keys].to_dict("records")
+  df["o"] = [c[0] for c in cs]; df["s"] = [c[2] for c in cs]; df["v"] = [mult(r, c[0], c[1]) for r, c in zip(recs, cs)]
   potentiel(df)
-  for k in FIELDS:
+  df["st"] = df["st"].map(lambda x: sv(x) or None)
+  for k in list(FIELDS) + ["vp", "cg"]:
     if k in ("ao", "ap"): df[k] = df[k].map(lambda v: num(v) or None).astype("Int64")
     else: df[k] = df[k].map(lambda v: re.sub(r"\.0$", "", sv(v)) or None).astype("object")
   with open(f"{OUT}/schema-{fid}.txt", "a") as f:
     f.write("classes: " + json.dumps(df["o"].value_counts().to_dict()) + "\n")
     f.write("exemples:\n" + df.drop(columns="geometry").head(8).to_string() + "\n")
+  df = df.drop(columns=["fid"])
   nd = f"{TMP}/{fid}.geojsonl"; df.to_file(nd, driver="GeoJSONSeq", engine="pyogrio")
   out = f"{OUT}/{fid}.pmtiles"
+  if os.environ.get("SANS_TIPPECANOE"): return {"id": fid, "entites": int(len(df)), "classes": df["o"].value_counts().to_dict()}
   subprocess.run(["tippecanoe", "-o", out, "--force", "-l", "pee", "-Z", "10", "-z", "15",
     "--coalesce-smallest-as-needed", "--detect-shared-borders", "--simplify-only-low-zooms",
     "--no-tile-stats", "-q", "-P", nd], check=True)
@@ -203,7 +358,7 @@ def main_safe():
 def main():
   args = sys.argv[1:]; done = []
   if args and args[0] == "--zone":   # essai rapide : --zone nom;s;w;n;e
-    nom, a, b, c, d = args[1].split(";"); g = wfs_zone(nom, float(a), float(b), float(c), float(d)); done.append(process(nom, g))
+    nom, a, b, c, d = args[1].split(";"); g = wfs_zone(nom, float(a), float(b), float(c), float(d)); done.append(process(nom, g, (float(a), float(b), float(c), float(d))))
   elif args and args[0] == "--test":
     done.append(process("TEST", args[1]))
   elif os.path.exists("zones.txt"):
@@ -213,7 +368,7 @@ def main():
       nom, a, b, c, d = [x.strip() for x in l.split(";")]
       try:
         g = wfs_zone(nom, float(a), float(b), float(c), float(d))
-        r = process(nom, g); r["bbox"] = [float(b), float(a), float(d), float(c)]; done.append(r)
+        r = process(nom, g, (float(a), float(b), float(c), float(d))); r["bbox"] = [float(b), float(a), float(d), float(c)]; done.append(r)
       except Exception:
         log("ERREUR", nom, traceback.format_exc())
       shutil.rmtree(TMP, ignore_errors=True); os.makedirs(TMP, exist_ok=True)
@@ -237,7 +392,7 @@ def main():
         log("ERREUR", fid, traceback.format_exc())
       shutil.rmtree(TMP, ignore_errors=True); os.makedirs(TMP, exist_ok=True)  # libérer le disque
   idx = {"maj": datetime.date.today().isoformat(), "annee_ref": YEAR, "source": "MRNF, Carte écoforestière à jour (CC-BY 4.0)",
-         "classes": {"i": "Idéal (mixte)", "n": "Nourriture", "a": "Abri", "h": "Humide", "o": "Ouvert récent", "r": "Résineux peu utile", "w": "Eau", "x": "Inconnu"}, "feuillets": done}
+         "modele": 2, "classes": {"i": "Idéal (mixte mature)", "a": "Abri avec sapin", "e": "Abri d'épinette noire", "n": "Nourriture", "h": "Humide riche", "b": "Humide pauvre", "p": "Passage", "o": "Ouvert récent", "r": "Résineux peu utile", "w": "Eau", "x": "Non forestier"}, "feuillets": done}
   json.dump(idx, open(f"{OUT}/index.json", "w"), ensure_ascii=False, indent=1)
   open(f"{OUT}/.nojekyll", "w").close()
   log(json.dumps(idx, ensure_ascii=False)[:800])
