@@ -62,7 +62,7 @@ def num(v):
 
 def classe(r):
   """Classe orignal : i=idéal (mixte), n=nourriture (feuillus / repousse), a=abri (résineux dense),
-     h=humide, o=ouvert récent (trop jeune), r=résineux peu utile, w=eau, x=inconnu. s = note 0 à 3."""
+     h=humide, o=ouvert récent (trop jeune), p=passage (repousse résineuse basse et ouverte), r=résineux peu utile, w=eau, x=inconnu. s = note 0 à 3."""
   te = sv(r.get("te")).upper()
   if EAU.match(te): return "w", 0
   if HUMIDE.match(te): return "h", 2
@@ -83,6 +83,8 @@ def classe(r):
   h_ = sv(r.get("h")); g_ = sv(r.get("g")).upper()
   jeune = h_ in ("4", "5", "6", "7") or g_ in ("10", "30", "JIN", "JIR")
   if res and FEU.search(e) and jeune: return "n", 2
+  # Repousse de résineux basse et ouverte (souvent un vieux brûlis) : zone de déplacement, pleine de pistes (terrain)
+  if res and h_ in ("5", "6", "7") and sv(r.get("d")).upper() != "A": return "p", 1
   if res:
     d = sv(r.get("d")).upper(); h = sv(r.get("h"))
     return ("a", 2) if (d in ("A", "B") and h in ("1", "2", "3", "4")) else ("r", 1)
@@ -117,7 +119,7 @@ def wfs_zone(nom, s_, w, n, e, step=0.05):
   json.dump({"type": "FeatureCollection", "features": list(feats.values())}, open(path, "w"))
   return path
 
-VAL = {"i": 3.0, "a": 1.4, "h": 2.0, "o": 0.9, "r": 0.6, "x": 0.0, "w": 0.0}
+VAL = {"i": 3.0, "a": 1.4, "h": 2.0, "o": 0.9, "p": 1.7, "r": 0.6, "x": 0.0, "w": 0.0}
 def potentiel(df):
   """Note « Où c'est bon » de 0 à 10 par peuplement : sa propre valeur + ses voisins.
      Lisière = voisin complémentaire (nourriture à côté d'abri, ou l'inverse); un milieu humide voisin ajoute un peu."""
@@ -125,17 +127,19 @@ def potentiel(df):
   L, R = m.sindex.query(g, predicate="intersects")
   o = df["o"].tolist(); s_ = df["s"].tolist(); n = len(df)
   food = lambda c: c in ("n", "i"); cover = lambda c: c in ("a", "i")
-  nb = [0] * n; comp = [0] * n; hum = [0] * n
+  nb = [0] * n; comp = [0] * n; hum = [0] * n; fc = [0] * n
   for a, b in zip(L, R):
     if a == b: continue
     nb[a] += 1
     if (food(o[a]) and cover(o[b]) and o[a] != o[b]) or (cover(o[a]) and food(o[b]) and o[a] != o[b]): comp[a] += 1
     if o[b] == "h": hum[a] += 1
+    if o[b] in ("n", "i", "a"): fc[a] += 1
   P = []; Lf = []
   for k in range(n):
     c = o[k]; v = (2.8 if s_[k] >= 3 else 2.2) if c == "n" else VAL.get(c, 0.0)
     f = comp[k] / nb[k] if nb[k] else 0.0
     p = v / 3 * 7.2 + (2.2 * min(1.0, f * 1.6) if c in ("n", "i", "a") else 0) + (0.6 if hum[k] and c in ("n", "i", "a") else 0)
+    if c == "p" and nb[k]: p += 1.5 * min(1.0, fc[k] / nb[k] * 1.5)  # passage qui relie nourriture et abri
     if c in ("x", "w"): p = 0
     P.append(int(round(min(10, max(0, p))))); Lf.append(1 if f >= 0.3 else 0)
   df["p"] = P; df["l"] = Lf
