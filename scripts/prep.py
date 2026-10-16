@@ -44,7 +44,7 @@ FIELDS = {
   "pt": [r"^CL_PENT$", r"PENT"],                                # classe de pente (A-F)
 }
 # Champs lus un peuplement à la fois au service de cartes (GetFeatureInfo) : absents du service WFS
-GFI_KEYS = {"co_ter": "te", "veg_pot": "vp", "couv_gaule": "cg", "st_ha_tot": "st", "annotation": "an"}
+GFI_KEYS = {"co_ter": "te", "veg_pot": "vp", "couv_gaule": "cg", "st_ha_tot": "st", "annotation": "an", "type_eco": "t"}
 FEU = re.compile(r"BP|PE|PT|FI|FX|FN|ER|BJ|PEU|FT|PU|BB|AU")
 RES = re.compile(r"EN|EB|SB|SE|RX|RZ|PG|EE|EP|SS|ML|ME|TO|TH|PB|PR")
 DIST = re.compile(r"^(CT|CPR|CPRS|CRS|CRB|BR|BRU|CHT|ES|P|PL|PLN|CBA|CPH|CB|CPC|CPPTM|CPI_CP|REA|CBT|CMR)$")
@@ -337,23 +337,34 @@ def secteur(df, G, rp, E, o, v, pas=750.0, rayon=1262.0):
   ix = np.clip(np.round((X - x0) / pas).astype(int), 0, len(gx) - 1); iy = np.clip(np.round((Y - y0) / pas).astype(int), 0, len(gy) - 1)
   df["q"] = np.round(q.reshape(len(gy), len(gx))[iy, ix], 1)
 
+ROUTES_OUT = {}
 def routes(df, rp):
-  """Distance à la route passante la plus proche (OpenStreetMap : autoroute, nationale, régionale, collectrice)."""
+  """Routes et chemins d'OpenStreetMap. k : p = route passante (autoroute à collectrice), f = chemin (forestier, local),
+     s = sentier ou chemin d'hiver. rd = distance du peuplement à la route passante la plus proche (m)."""
   import shapely, numpy as np
   if os.environ.get("SANS_RESEAU"): df["rd"] = None; return
-  b = df.total_bounds; q = (f'[out:json][timeout:180];way["highway"~"^(motorway|trunk|primary|secondary|tertiary)(_link)?$"]'
-       f'({b[1]:.4f},{b[0]:.4f},{b[3]:.4f},{b[2]:.4f});out geom;')
+  b = df.total_bounds; q = (f'[out:json][timeout:240];way["highway"~"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|track|path|bridleway)(_link)?$"]'
+       f'({b[1]:.4f},{b[0]:.4f},{b[3]:.4f},{b[2]:.4f});out geom tags;')
   raw = None
   for url in ("https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"):
     try:
       req = urllib.request.Request(url, data=("data=" + urllib.parse.quote(q)).encode(), headers=UA)
-      with urllib.request.urlopen(req, timeout=240) as r: raw = r.read(); break
+      with urllib.request.urlopen(req, timeout=300) as r: raw = r.read(); break
     except Exception as ex: log("routes", url, repr(ex))
   if raw is None: df["rd"] = None; return
-  ways = [w_ for w_ in json.loads(raw).get("elements", []) if w_.get("geometry")]
-  log("routes passantes (OSM) :", len(ways))
-  if not ways: df["rd"] = None; return
-  L = gpd.GeoSeries([shapely.LineString([(g["lon"], g["lat"]) for g in w_["geometry"]]) for w_ in ways if len(w_["geometry"]) > 1], crs=4326).to_crs(32198).values
+  feats = []; passant = []
+  for w_ in json.loads(raw).get("elements", []):
+    g = w_.get("geometry") or []
+    if len(g) < 2: continue
+    hw = (w_.get("tags") or {}).get("highway", ""); tg = (w_.get("tags") or {}).get("tracktype", "")
+    k = "p" if re.match(r"^(motorway|trunk|primary|secondary|tertiary)", hw) else "s" if hw in ("path", "bridleway") or tg in ("grade4", "grade5") else "f"
+    ln = shapely.LineString([(x["lon"], x["lat"]) for x in g])
+    feats.append({"type": "Feature", "properties": {"k": k, "n": (w_.get("tags") or {}).get("name") or None}, "geometry": shapely.geometry.mapping(ln)})
+    if k == "p": passant.append(ln)
+  log("routes et chemins (OSM) :", len(feats), "dont", len(passant), "passantes")
+  ROUTES_OUT["feats"] = feats
+  if not passant: df["rd"] = None; return
+  L = gpd.GeoSeries(passant, crs=4326).to_crs(32198).values
   t = shapely.STRtree(L); qi, ti = t.query_nearest(rp, max_distance=1500, return_distance=False, all_matches=False)
   d = np.full(len(rp), np.nan); d[qi] = shapely.distance(rp[qi], L[ti])
   df["rd"] = [None if np.isnan(x) else int(round(x)) for x in d]
@@ -395,6 +406,13 @@ def process(fid, gpkg, bb=None):
   df["o"] = [c[0] for c in cs]; df["s"] = [c[2] for c in cs]; df["v"] = [mult(r, c[0], c[1]) for r, c in zip(recs, cs)]
   potentiel(df)
   df["st"] = df["st"].map(lambda x: sv(x) or None)
+  def humide(r):
+    t = sv(r.get("t")).upper(); dr = sv(r.get("dr")); tc = sv(r.get("tc"))
+    if not tc: return 0
+    if len(t) >= 4 and t[3] in "456": return 1
+    if len(t) >= 4 and t[3] in "789": return 2
+    return 1 if dr[:1] in ("4", "5") else 2 if dr[:1] == "6" else 0
+  df["fh"] = [humide(r) for r in df[["t", "dr", "tc"]].to_dict("records")]
   for k in list(FIELDS) + ["vp", "cg", "an"]:
     if k in ("ao", "ap"): df[k] = df[k].map(lambda v: num(v) or None).astype("Int64")
     else: df[k] = df[k].map(lambda v: re.sub(r"\.0$", "", sv(v)) or None).astype("object")
@@ -405,9 +423,16 @@ def process(fid, gpkg, bb=None):
   nd = f"{TMP}/{fid}.geojsonl"; df.to_file(nd, driver="GeoJSONSeq", engine="pyogrio")
   out = f"{OUT}/{fid}.pmtiles"
   if os.environ.get("SANS_TIPPECANOE"): return {"id": fid, "entites": int(len(df)), "classes": df["o"].value_counts().to_dict()}
-  subprocess.run(["tippecanoe", "-o", out, "--force", "-l", "pee", "-Z", "10", "-z", "15",
-    "--coalesce-smallest-as-needed", "--detect-shared-borders", "--simplify-only-low-zooms",
-    "--no-tile-stats", "-q", "-P", nd], check=True)
+  rdf = None
+  if ROUTES_OUT.get("feats"):
+    rdf = f"{TMP}/{fid}-routes.geojsonl"
+    with open(rdf, "w") as f:
+      for ft in ROUTES_OUT["feats"]: f.write(json.dumps(ft) + "\n")
+  ROUTES_OUT.clear()
+  cmd = ["tippecanoe", "-o", out, "--force", "-Z", "10", "-z", "15", "--coalesce-smallest-as-needed", "--detect-shared-borders",
+         "--simplify-only-low-zooms", "--no-tile-stats", "-q", "-P", "-L", "pee:" + nd]
+  if rdf: cmd += ["-L", "routes:" + rdf]
+  subprocess.run(cmd, check=True)
   b = df.total_bounds
   return {"id": fid, "url": f"{fid}.pmtiles", "bbox": [round(float(x), 4) for x in b], "taille": os.path.getsize(out), "entites": int(len(df)), "champs": m}
 
