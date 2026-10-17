@@ -45,8 +45,17 @@ FIELDS = {
 }
 # Champs lus un peuplement à la fois au service de cartes (GetFeatureInfo) : absents du service WFS
 GFI_KEYS = {"co_ter": "te", "veg_pot": "vp", "couv_gaule": "cg", "st_ha_tot": "st", "annotation": "an", "type_eco": "t"}
-FEU = re.compile(r"BP|PE|PT|FI|FX|FN|ER|BJ|PEU|FT|PU|BB|AU")
-RES = re.compile(r"EN|EB|SB|SE|RX|RZ|PG|EE|EP|SS|ML|ME|TO|TH|PB|PR")
+# Codes d'essences (norme de stratification écoforestière, tableaux 8 et 9). PU = pruche (résineux), pas un peuplier.
+FEU_C = {"BP", "BJ", "BG", "BB", "PE", "PT", "PA", "PD", "FI", "FX", "FN", "FT", "ER", "ES", "EO", "CR", "CH", "HG",
+         "FO", "FA", "FP", "FR", "OR", "CT", "TA", "TI", "CA", "OV", "OS", "AU"}
+RES_C = {"EN", "EB", "SB", "SE", "RX", "RZ", "PG", "EE", "EP", "SS", "ML", "ME", "TO", "TH", "PB", "PR", "PU", "RS"}
+def _ess(s): return re.findall(r"[A-Z]{2}", s or "")
+class _EssRe:
+  """Remplace l'ancienne regex : cherche des codes d'essence entiers (par paires de lettres), pas des bouts de texte."""
+  def __init__(self, codes): self.c = codes
+  def search(self, s): return any(t in self.c for t in _ess(s))
+FEU = _EssRe(FEU_C)
+RES = _EssRe(RES_C)
 DIST = re.compile(r"^(CT|CPR|CPRS|CRS|CRB|BR|BRU|CHT|ES|P|PL|PLN|CBA|CPH|CB|CPC|CPPTM|CPI_CP|REA|CBT|CMR)$")
 HUMIDE = re.compile(r"^(DH|AL|INO|TOU|MAR)$")
 EAU = re.compile(r"^(EAU|LAC|RIV|ILE)$")
