@@ -1,0 +1,3681 @@
+{
+ "version": "2026",
+ "maj": "2026-10-17",
+ "sources": [
+  "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal",
+  "https://www.quebec.ca/en/tourism-recreation-sport/sporting-and-outdoor-activities/sport-hunting/seasons-bag-limits/moose",
+  "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie",
+  "https://cdn-contenu.quebec.ca/cdn-contenu/chasse/Documents/calendrier-zone-chasse-cerf-virginie-2026.pdf",
+  "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/nouveautes-reglementaires",
+  "https://cdn-contenu.quebec.ca/cdn-contenu/faune/documents/gestion-especes/Plans-gestion/plan-gestion-orignal-nouveautes.pdf",
+  "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/gibier/orignal",
+  "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/cartes-zones",
+  "https://servicesvecto3.mern.gouv.qc.ca/geoserver/SmartFaunePub/ows?service=WFS&version=2.0.0&request=GetCapabilities"
+ ],
+ "legende": {
+  "engins": {
+   "arc": "arc",
+   "arbalete": "arbalete",
+   "acb": "arme a chargement par la bouche",
+   "fusil": "fusil (balle unique ou plombs >= 7,6 mm pour le cerf)",
+   "carabine": "carabine"
+  },
+  "periodes": "AA = arc+arbalete ; ACB-FUS = fusil, ACB, arc, arbalete (pas de carabine) ; AF = toutes armes a feu + arc + arbalete",
+  "orignal_OSB": "Orignal sans bois (OSB) = femelle ou veau, tout orignal dont les bois mesurent moins de 10 cm. Nouveau en 2026 : veau et femelle regroupes sous OSB. Permis regulier = 1 male adulte ; OSB par tirage dans zones 1-12, 14-16, 22, 26, 27, certaines zecs et reserves fauniques ; alternance (2026 restrictive) en 13, 18, 28 ; ouvert chaque annee sans permis special en 19 sud et 29. Periodes ACB specifiques retirees en 2026 (ACB permise pendant la periode armes a feu).",
+  "orignal_limite": "1 orignal pour 2 chasseurs par annee ; 1 pour 3 dans 24 zecs (liste sur la page gibier/orignal).",
+  "cerf_RTLB": "Zones 6 nord et 6 sud seulement : au moins 3 pointes de 2,5 cm et plus d'un cote.",
+  "cerf_limite": "2 cerfs/an de 2 zones differentes ; dans 4, 5E, 5O, 6N, 6S, 7S, 8E, 8N, 8S les 2 peuvent venir de la meme zone mais un seul male adulte. Le 1er cerf ne peut pas venir de la zone 20.",
+  "releve": "Cerf seulement : 31 oct.-1er nov. 2026. Aucune periode releve publiee pour l'orignal.",
+  "hors_perimetre": "Reserves fauniques, pourvoiries a droits exclusifs et certaines zecs ont leurs propres periodes (voir https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/reserves-fauniques). Chasse interdite dans les parcs nationaux et certains territoires (regles-territoires).",
+  "zone_25": "Zone 25 = zone de peche seulement (pas une zone de chasse).",
+  "code_wfs": "Valeur du champ 'Zone' de la couche officielle SmartFaunePub:Zone_chasse_da3_sefaq (voir zones-geo.md)."
+ },
+ "zones": {
+  "1n": {
+   "nom": "Zone 1 nord",
+   "code_wfs": "01N",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-15",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "1s": {
+   "nom": "Zone 1 sud",
+   "code_wfs": "01S",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-15",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "2e": {
+   "nom": "Zone 2 est",
+   "code_wfs": "02E",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Sauf cantons de Macpes et Duquesne (exclus de la periode armes a feu).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie",
+     "note": "Canton de Macpes : arc/arbalete seulement, du 3 au 16 oct. Cantons de Macpes et Duquesne exclus de la periode armes a feu et de la releve."
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-15",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ],
+   "notes": {
+    "orignal": "Cantons de Macpes et Duquesne exclus de la periode armes a feu."
+   }
+  },
+  "2ei": {
+   "nom": "Zone 2 est - iles du Saint-Laurent",
+   "code_wfs": "02EI",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Sauf cantons de Macpes et Duquesne (exclus de la periode armes a feu).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte. Pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "2o": {
+   "nom": "Zone 2 ouest",
+   "code_wfs": "02O",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Sauf cantons de Macpes et Duquesne (exclus de la periode armes a feu).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ],
+   "notes": {
+    "orignal": "Cantons de Macpes et Duquesne (zone 2) exclus de la periode armes a feu (verifier dans quelle sous-zone ils se trouvent)."
+   }
+  },
+  "2oi": {
+   "nom": "Zone 2 ouest - iles du Saint-Laurent",
+   "code_wfs": "02OI",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Sauf cantons de Macpes et Duquesne (exclus de la periode armes a feu).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte. Pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "3e": {
+   "nom": "Zone 3 est",
+   "code_wfs": "03E",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Releve listee pour 3 est par chasseurquebec.com et par les notes du 2026-10-17 ; une lecture de Quebec.ca ne l'a pas affichee : a confirmer.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "3ei": {
+   "nom": "Zone 3 est - iles du Saint-Laurent",
+   "code_wfs": "03EI",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte. Pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "3o": {
+   "nom": "Zone 3 ouest",
+   "code_wfs": "03O",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "3oi": {
+   "nom": "Zone 3 ouest - iles du Saint-Laurent",
+   "code_wfs": "03OI",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte. Pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "4": {
+   "nom": "Zone 4",
+   "code_wfs": "04",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "5e": {
+   "nom": "Zone 5 est",
+   "code_wfs": "05E",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "5o": {
+   "nom": "Zone 5 ouest",
+   "code_wfs": "05O",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "femelle ou male a bois de moins de 7 cm seulement (sans bois)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "6n": {
+   "nom": "Zone 6 nord",
+   "code_wfs": "06N",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec bois RTLB (au moins 3 pointes de 2,5 cm ou plus d'un cote) ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec bois RTLB (au moins 3 pointes de 2,5 cm ou plus d'un cote) ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec bois RTLB (au moins 3 pointes de 2,5 cm ou plus d'un cote)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec bois RTLB (au moins 3 pointes de 2,5 cm ou plus d'un cote)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "6s": {
+   "nom": "Zone 6 sud",
+   "code_wfs": "06S",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec bois RTLB (au moins 3 pointes de 2,5 cm ou plus d'un cote) ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec bois RTLB (au moins 3 pointes de 2,5 cm ou plus d'un cote) ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec bois RTLB (au moins 3 pointes de 2,5 cm ou plus d'un cote)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec bois RTLB (au moins 3 pointes de 2,5 cm ou plus d'un cote)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "7n": {
+   "nom": "Zone 7 nord",
+   "code_wfs": "07N",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "7s": {
+   "nom": "Zone 7 sud",
+   "code_wfs": "07S",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "8e": {
+   "nom": "Zone 8 est",
+   "code_wfs": "08E",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "8n": {
+   "nom": "Zone 8 nord",
+   "code_wfs": "08N",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie",
+     "note": "Hors territoire de la montagne de Rigaud (voir 8nmr)."
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "8nz": {
+   "nom": "Zone 8 nord - partie ZSR",
+   "code_wfs": "08NZ",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie",
+     "note": "Hors territoire de la montagne de Rigaud (voir 8nmr)."
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ],
+   "notes": {
+    "general": "Partie 'ZSR' de la couche officielle : signification non documentee dans la couche WFS. Dates de la sous-zone parente appliquees ; a confirmer."
+   }
+  },
+  "8nmr": {
+   "nom": "Zone 8 nord - montagne de Rigaud",
+   "code_wfs": "08NMR",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Territoire de la montagne de Rigaud : arc/arbalete seulement.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Arc/arbalete seulement (Rigaud).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-10",
+     "au": "2026-11-22",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Territoire de la montagne de Rigaud : arc/arbalete seulement.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "8s": {
+   "nom": "Zone 8 sud",
+   "code_wfs": "08S",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "femelle ou male a bois de moins de 7 cm seulement (sans bois)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "9e": {
+   "nom": "Zone 9 est",
+   "code_wfs": "09E",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "9o": {
+   "nom": "Zone 9 ouest",
+   "code_wfs": "09O",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "9oz": {
+   "nom": "Zone 9 ouest - partie ZSR",
+   "code_wfs": "09OZ",
+   "orignal": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-09",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ],
+   "notes": {
+    "general": "Partie 'ZSR' de la couche officielle : signification non documentee. Dates de 9 ouest appliquees ; a confirmer."
+   }
+  },
+  "10e": {
+   "nom": "Zone 10 est",
+   "code_wfs": "10E",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "10ez": {
+   "nom": "Zone 10 est - partie ZSR",
+   "code_wfs": "10EZ",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ],
+   "notes": {
+    "general": "Partie 'ZSR' de la couche officielle : signification non documentee. Dates de 10 est appliquees ; a confirmer."
+   }
+  },
+  "10o": {
+   "nom": "Zone 10 ouest",
+   "code_wfs": "10O",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-18",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-17",
+     "au": "2026-10-21",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "11e": {
+   "nom": "Zone 11 est",
+   "code_wfs": "11E",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Aucune periode a l'arme a feu pour l'orignal en 2026 (arc et arbalete seulement).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "11o": {
+   "nom": "Zone 11 ouest",
+   "code_wfs": "11O",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-18",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "12": {
+   "nom": "Zone 12",
+   "code_wfs": "12",
+   "orignal": [
+    {
+     "du": "2026-09-19",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "13": {
+   "nom": "Zone 13 (reste, hors sud-ouest)",
+   "code_wfs": "13",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "tout orignal (segment \"Orignal\") : avec bois et OSB permis a l'arc/arbalete en 2026 (exception a l'alternance)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) seulement (alternance : 2026 = annee restrictive, OSB ferme ; OSB rouvert en 2027)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [],
+   "cerf_ferme": true,
+   "notes": {
+    "cerf": "Seule la partie sud-ouest (13so) est ouverte au cerf."
+   }
+  },
+  "13so": {
+   "nom": "Zone 13 sud-ouest",
+   "code_wfs": "13SO",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "tout orignal (segment \"Orignal\") : avec bois et OSB permis a l'arc/arbalete en 2026 (exception a l'alternance)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) seulement (alternance : 2026 = annee restrictive, OSB ferme ; OSB rouvert en 2027)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie",
+     "note": "Zone 13 sud-ouest : au sud de la route 101, du chemin Kipawa et du chemin forestier R0819 ; s'applique aux zecs Dumoine, Maganasipi et Restigo."
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ],
+   "notes": {
+    "orignal": "Zecs Dumoine, Maganasipi, Restigo (et Kipawa, zone 13) ont leurs propres dates d'orignal : voir 'territoires'."
+   }
+  },
+  "14": {
+   "nom": "Zone 14",
+   "code_wfs": "14",
+   "orignal": [
+    {
+     "du": "2026-09-19",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [],
+   "cerf_ferme": true,
+   "notes": {
+    "cerf": "Aucune periode de chasse au cerf publiee pour 2026 (zone non chassable)."
+   }
+  },
+  "15e": {
+   "nom": "Zone 15 est",
+   "code_wfs": "15E",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-18",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Arc/arbalete seulement.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "15n": {
+   "nom": "Zone 15 nord",
+   "code_wfs": "15N",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-18",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [],
+   "cerf_ferme": true,
+   "notes": {
+    "cerf": "15 nord absente des tableaux cerf (seules 15 est et 15 ouest y figurent).",
+    "orignal": "Dates de la zone 15 (Quebec.ca ne subdivise pas la zone 15 pour l'orignal)."
+   }
+  },
+  "15o": {
+   "nom": "Zone 15 ouest",
+   "code_wfs": "15O",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-18",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "16": {
+   "nom": "Zone 16",
+   "code_wfs": "16",
+   "orignal": [
+    {
+     "du": "2026-09-12",
+     "au": "2026-09-20",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-16",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [],
+   "cerf_ferme": true,
+   "notes": {
+    "cerf": "Aucune periode de chasse au cerf publiee pour 2026 (zone non chassable)."
+   }
+  },
+  "17": {
+   "nom": "Zone 17",
+   "code_wfs": "17",
+   "orignal": [],
+   "orignal_ferme": true,
+   "cerf": [],
+   "cerf_ferme": true,
+   "notes": {
+    "orignal": "Chasse sportive a l'orignal interdite jusqu'a nouvel ordre (declin de population, inventaire 2021) ; seule la chasse autochtone de subsistance est permise.",
+    "cerf": "Aucune periode de chasse au cerf publiee pour 2026 (zone non chassable)."
+   }
+  },
+  "18": {
+   "nom": "Zone 18",
+   "code_wfs": "18",
+   "orignal": [
+    {
+     "du": "2026-09-12",
+     "au": "2026-09-20",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) seulement (alternance : 2026 = annee restrictive, OSB ferme ; OSB rouvert en 2027)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-12",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) seulement (alternance : 2026 = annee restrictive, OSB ferme ; OSB rouvert en 2027)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Arc/arbalete seulement.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine. Nouveau en 2026 : ouverture de la chasse au cerf en zone 18.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "19n": {
+   "nom": "Zone 19 nord",
+   "code_wfs": "19N",
+   "orignal": [],
+   "orignal_ferme": true,
+   "cerf": [],
+   "cerf_ferme": true,
+   "notes": {
+    "orignal": "Aucune periode de chasse sportive a l'orignal publiee pour 2026. Zone 19 nord absente des tableaux et du plan de gestion 2026 : a confirmer au 1 877 346-6763.",
+    "cerf": "Aucune periode de chasse au cerf publiee pour 2026 (zone non chassable)."
+   }
+  },
+  "19sno": {
+   "nom": "Zone 19 sud - partie nord-ouest",
+   "code_wfs": "19SNO",
+   "orignal": [
+    {
+     "du": "2026-08-29",
+     "au": "2026-09-06",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "tout orignal : avec bois et OSB (femelle, veau), sans permis special",
+     "note": "Partie nord-ouest de la zone 19 sud.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-09-12",
+     "au": "2026-10-12",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "tout orignal : avec bois et OSB (femelle, veau), sans permis special",
+     "note": "Partie nord-ouest de la zone 19 sud.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [],
+   "cerf_ferme": true,
+   "notes": {
+    "cerf": "Aucune periode de chasse au cerf publiee pour 2026 (zone non chassable)."
+   }
+  },
+  "19se": {
+   "nom": "Zone 19 sud - partie est",
+   "code_wfs": "19SE",
+   "orignal": [
+    {
+     "du": "2026-09-05",
+     "au": "2026-09-13",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "tout orignal : avec bois et OSB (femelle, veau), sans permis special",
+     "note": "Partie est de la zone 19 sud.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-09-19",
+     "au": "2026-11-01",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "tout orignal : avec bois et OSB (femelle, veau), sans permis special",
+     "note": "Partie est de la zone 19 sud.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [],
+   "cerf_ferme": true,
+   "notes": {
+    "cerf": "Aucune periode de chasse au cerf publiee pour 2026 (zone non chassable)."
+   }
+  },
+  "19so": {
+   "nom": "Zone 19 sud - partie ouest (sauf nord-ouest)",
+   "code_wfs": "19SO",
+   "orignal": [
+    {
+     "du": "2026-09-05",
+     "au": "2026-09-13",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "tout orignal : avec bois et OSB (femelle, veau), sans permis special",
+     "note": "Partie ouest de la zone 19 sud (sauf nord-ouest).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-09-19",
+     "au": "2026-10-18",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "tout orignal : avec bois et OSB (femelle, veau), sans permis special",
+     "note": "Partie ouest de la zone 19 sud (sauf nord-ouest).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [],
+   "cerf_ferme": true,
+   "notes": {
+    "cerf": "Aucune periode de chasse au cerf publiee pour 2026 (zone non chassable)."
+   }
+  },
+  "20": {
+   "nom": "Zone 20 (ile d'Anticosti)",
+   "code_wfs": "20",
+   "orignal": [],
+   "orignal_ferme": true,
+   "cerf": [
+    {
+     "du": "2026-08-01",
+     "au": "2026-08-31",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Anticosti (sauf partie ouest). Limite : 4 cerfs par sejour dont 2 avec bois max. Appatage permis toute l'annee en zone 20.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-09-01",
+     "au": "2026-12-24",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Anticosti (sauf partie ouest).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ],
+   "notes": {
+    "orignal": "Chasse a l'orignal fermee (plan de gestion 2026).",
+    "cerf": "La partie ouest de la zone 20 n'a pas de dates sur Quebec.ca (probablement parc national d'Anticosti / secteurs a regles propres) : a confirmer."
+   }
+  },
+  "21": {
+   "nom": "Zone 21",
+   "code_wfs": "21",
+   "orignal": [],
+   "orignal_ferme": true,
+   "cerf": [],
+   "cerf_ferme": true,
+   "notes": {
+    "orignal": "Aucune periode de chasse sportive a l'orignal publiee pour 2026. Zone 21 absente des tableaux et du plan de gestion 2026 : a confirmer.",
+    "cerf": "Aucune periode de chasse au cerf publiee pour 2026 (zone non chassable)."
+   }
+  },
+  "22": {
+   "nom": "Zone 22",
+   "code_wfs": "22",
+   "orignal": [
+    {
+     "du": "2026-09-05",
+     "au": "2026-09-13",
+     "engins": [
+      "arc"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Arc seulement (arbalete interdite en zone 22).",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-09-19",
+     "au": "2026-10-12",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Arbalete interdite en zone 22.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [],
+   "cerf_ferme": true,
+   "notes": {
+    "cerf": "Aucune periode de chasse au cerf publiee pour 2026 (zone non chassable)."
+   }
+  },
+  "23": {
+   "nom": "Zone 23",
+   "code_wfs": "23",
+   "orignal": [],
+   "orignal_ferme": true,
+   "cerf": [],
+   "cerf_ferme": true,
+   "notes": {
+    "orignal": "Chasse a l'orignal fermee (plan de gestion 2026). Arbalete interdite en zone 23.",
+    "cerf": "Aucune periode de chasse au cerf publiee pour 2026 (zone non chassable)."
+   }
+  },
+  "24": {
+   "nom": "Zone 24",
+   "code_wfs": "24",
+   "orignal": [],
+   "orignal_ferme": true,
+   "cerf": [],
+   "cerf_ferme": true,
+   "notes": {
+    "orignal": "Chasse a l'orignal fermee (plan de gestion 2026). Arbalete interdite en zone 24.",
+    "cerf": "Aucune periode de chasse au cerf publiee pour 2026 (zone non chassable)."
+   }
+  },
+  "26e": {
+   "nom": "Zone 26 est",
+   "code_wfs": "26E",
+   "orignal": [
+    {
+     "du": "2026-09-19",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Arc/arbalete seulement.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "26o": {
+   "nom": "Zone 26 ouest",
+   "code_wfs": "26O",
+   "orignal": [
+    {
+     "du": "2026-09-19",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Arc/arbalete seulement.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "27e": {
+   "nom": "Zone 27 est",
+   "code_wfs": "27E",
+   "orignal": [
+    {
+     "du": "2026-09-19",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Arc/arbalete seulement.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "27ei": {
+   "nom": "Zone 27 est - iles du Saint-Laurent",
+   "code_wfs": "27EI",
+   "orignal": [
+    {
+     "du": "2026-09-19",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte. Pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "27esb": {
+   "nom": "Zone 27 est - Seigneurie de Beaupre",
+   "code_wfs": "27ESB",
+   "orignal": [
+    {
+     "du": "2026-09-19",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Arc/arbalete seulement.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ],
+   "notes": {
+    "general": "Seigneurie de Beaupre : territoire prive a regles propres (gestionnaire). Dates de la sous-zone 27 parente indicatives seulement."
+   }
+  },
+  "27o": {
+   "nom": "Zone 27 ouest",
+   "code_wfs": "27O",
+   "orignal": [
+    {
+     "du": "2026-09-19",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Arc/arbalete seulement.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "27oi": {
+   "nom": "Zone 27 ouest - iles du Saint-Laurent",
+   "code_wfs": "27OI",
+   "orignal": [
+    {
+     "du": "2026-09-19",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "avec ou sans bois",
+     "note": "Iles et ilots du Saint-Laurent en aval du pont Pierre-Laporte. Pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "27osb": {
+   "nom": "Zone 27 ouest - Seigneurie de Beaupre",
+   "code_wfs": "27OSB",
+   "orignal": [
+    {
+     "du": "2026-09-19",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-25",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Arc/arbalete seulement.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ],
+   "notes": {
+    "general": "Seigneurie de Beaupre : territoire prive a regles propres (gestionnaire). Dates de la sous-zone 27 parente indicatives seulement."
+   }
+  },
+  "28": {
+   "nom": "Zone 28",
+   "code_wfs": "28",
+   "orignal": [
+    {
+     "du": "2026-09-12",
+     "au": "2026-09-20",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) seulement (alternance : 2026 = annee restrictive, OSB ferme ; OSB rouvert en 2027)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-16",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) seulement (alternance : 2026 = annee restrictive, OSB ferme ; OSB rouvert en 2027)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [
+    {
+     "du": "2026-10-31",
+     "au": "2026-11-01",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Periode de la releve (12-17 ans certifies, numero d'initiation ou nouveaux certifies 2025; accompagnateur sans arme). Arc/arbalete seulement.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-07",
+     "au": "2026-11-12",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    },
+    {
+     "du": "2026-11-13",
+     "au": "2026-11-15",
+     "engins": [
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Zone marginale : pas de carabine.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ]
+  },
+  "29": {
+   "nom": "Zone 29",
+   "code_wfs": "29",
+   "orignal": [
+    {
+     "du": "2026-09-05",
+     "au": "2026-09-13",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "tout orignal : avec bois et OSB (femelle, veau), sans permis special",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-09-19",
+     "au": "2026-10-18",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "tout orignal : avec bois et OSB (femelle, veau), sans permis special",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "cerf": [],
+   "cerf_ferme": true,
+   "notes": {
+    "cerf": "Aucune periode de chasse au cerf publiee pour 2026 (zone non chassable)."
+   }
+  }
+ },
+ "territoires": {
+  "macpes": {
+   "nom": "Canton de Macpes (zone 2)",
+   "cerf": [
+    {
+     "du": "2026-10-03",
+     "au": "2026-10-16",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "cerf avec bois (male adulte, bois >= 7 cm)",
+     "note": "Arc/arbalete seulement.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/cerf-virginie"
+    }
+   ],
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm) ; OSB (femelle ou veau, bois < 10 cm) seulement avec permis OSB gagne au tirage pour cette zone",
+     "note": "Exclu de la periode armes a feu de la zone 2.",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ]
+  },
+  "duquesne": {
+   "nom": "Canton de Duquesne (zone 2)",
+   "note": "Exclu des periodes armes a feu (orignal et cerf) et de la releve cerf de la zone 2. Les periodes arc/arbalete de la zone s'appliquent (a confirmer)."
+  },
+  "zec-batiscan-neilson": {
+   "nom": "Zec Batiscan-Neilson",
+   "orignal": [
+    {
+     "du": "2026-09-19",
+     "au": "2026-09-27",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-18",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "note": "Dates propres a la zec (remplacent celles de la zone). Regles OSB/limite 1 orignal pour 3 chasseurs selon la zec."
+  },
+  "zec-des-martres": {
+   "nom": "Zec des Martres",
+   "orignal": [
+    {
+     "du": "2026-09-19",
+     "au": "2026-09-27",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-22",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "note": "Dates propres a la zec (remplacent celles de la zone). Regles OSB/limite 1 orignal pour 3 chasseurs selon la zec."
+  },
+  "zec-dumoine": {
+   "nom": "Zec Dumoine (13 sud-ouest)",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-18",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "note": "Dates propres a la zec (remplacent celles de la zone). Regles OSB/limite 1 orignal pour 3 chasseurs selon la zec."
+  },
+  "zec-jeannotte": {
+   "nom": "Zec Jeannotte",
+   "orignal": [
+    {
+     "du": "2026-09-19",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-18",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "note": "Dates propres a la zec (remplacent celles de la zone). Regles OSB/limite 1 orignal pour 3 chasseurs selon la zec."
+  },
+  "zec-kipawa": {
+   "nom": "Zec Kipawa (zone 13)",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "tout orignal (segment \"Orignal\")",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-18",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "note": "Dates propres a la zec (remplacent celles de la zone). Regles OSB/limite 1 orignal pour 3 chasseurs selon la zec."
+  },
+  "zec-maganasipi": {
+   "nom": "Zec Maganasipi (13 sud-ouest)",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-18",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "note": "Dates propres a la zec (remplacent celles de la zone). Regles OSB/limite 1 orignal pour 3 chasseurs selon la zec."
+  },
+  "zec-restigo": {
+   "nom": "Zec Restigo (13 sud-ouest)",
+   "orignal": [
+    {
+     "du": "2026-09-26",
+     "au": "2026-10-04",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-18",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "note": "Dates propres a la zec (remplacent celles de la zone). Regles OSB/limite 1 orignal pour 3 chasseurs selon la zec."
+  },
+  "zec-riviere-blanche": {
+   "nom": "Zec de la Riviere-Blanche",
+   "orignal": [
+    {
+     "du": "2026-09-19",
+     "au": "2026-09-27",
+     "engins": [
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    },
+    {
+     "du": "2026-10-10",
+     "au": "2026-10-15",
+     "engins": [
+      "carabine",
+      "fusil",
+      "acb",
+      "arc",
+      "arbalete"
+     ],
+     "animaux": "orignal avec bois (male adulte, bois >= 10 cm)",
+     "src": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/periodes-limites/orignal"
+    }
+   ],
+   "note": "Dates propres a la zec (remplacent celles de la zone). Regles OSB/limite 1 orignal pour 3 chasseurs selon la zec."
+  }
+ }
+}
