@@ -1,0 +1,26 @@
+name: Zones de chasse
+# Télécharge les limites officielles des zones de chasse et les publie, allégées, dans la branche « zones ».
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/zones.py", ".github/workflows/zones.yml"]
+permissions:
+  contents: write
+jobs:
+  zones:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install geopandas shapely pyogrio
+      - run: mkdir -p /tmp/z && python tools/zones.py /tmp/z/zones-chasse.json 2>&1 | tee /tmp/z/journal.txt
+      - name: Publier dans la branche zones
+        if: always()
+        run: |
+          cd /tmp/z && git init -q && git checkout -q -b zones
+          git -c user.name="github-actions" -c user.email="actions@github.com" add -A
+          git -c user.name="github-actions" -c user.email="actions@github.com" commit -q -m "Zones $(date -u +%F_%H%M)"
+          git push -f -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" zones
