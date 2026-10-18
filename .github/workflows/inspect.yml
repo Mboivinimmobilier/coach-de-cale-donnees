@@ -1,0 +1,15 @@
+name: Inspection des tuiles
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/inspect_tiles.py", ".github/workflows/inspect.yml"]
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install pmtiles mapbox-vector-tile
+      - run: python tools/inspect_tiles.py
