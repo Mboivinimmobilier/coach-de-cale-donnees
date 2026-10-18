@@ -1,0 +1,151 @@
+{
+ "maj": "2026-10-18",
+ "annee_ref": 2026,
+ "source": "MRNF, Carte écoforestière à jour (CC-BY 4.0)",
+ "modele": 2,
+ "classes": {
+  "i": "Idéal (mixte mature)",
+  "a": "Abri avec sapin",
+  "e": "Abri d'épinette noire",
+  "n": "Nourriture",
+  "h": "Humide riche",
+  "b": "Humide pauvre",
+  "p": "Passage",
+  "o": "Ouvert récent",
+  "r": "Résineux peu utile",
+  "w": "Eau",
+  "x": "Non forestier"
+ },
+ "especes": {
+  "orignal": {
+   "classes": {
+    "i": "Idéal (mixte mature)",
+    "a": "Abri avec sapin",
+    "e": "Abri d'épinette noire",
+    "n": "Nourriture",
+    "h": "Humide riche",
+    "b": "Humide pauvre",
+    "p": "Passage",
+    "o": "Ouvert récent",
+    "r": "Résineux peu utile",
+    "w": "Eau",
+    "x": "Non forestier"
+   }
+  },
+  "cerf": {
+   "modele": 1,
+   "classes": {
+    "e": "Abri d'élite (thuya, pruche, sapin)",
+    "a": "Abri (épinettes, pins)",
+    "m": "Nourriture-abri (couche d'automne)",
+    "j": "Jeune coupe (brout)",
+    "n": "Nourriture (couvert clair, régénération, mât)",
+    "f": "Friche",
+    "c": "Champ agricole",
+    "u": "Peu utilisé (feuillu fermé, mélézaie, aulnaie, plantation)",
+    "p": "Pauvre ou nul (pessière claire, dénudé, tourbière)",
+    "w": "Eau"
+   },
+   "proprietes": {
+    "oc": "classe",
+    "vc": "valeur de la classe sur 3",
+    "pc": "note d'automne sur 10 (avant le 15 nov.)",
+    "qc": "secteur sur 10 (~200 ha)",
+    "ag": "distance au champ ou à la friche (m, max 3000)",
+    "rv": "distance au ravage (m, 0 = dedans, max 30000)"
+   },
+   "fin_saison": "après le 15 nov. ou 20 cm de neige : pc × 0,92 + Rv, Rv = 0,8 si rv = 0, 0,5 si rv ≤ 3000, 0,25 si rv ≤ 10000",
+   "couche_ravages": "ravages",
+   "source_ravages": "MRNF, Habitats fauniques (Habitat_legal), aires de confinement du cerf de Virginie"
+  }
+ },
+ "feuillets": [
+  {
+   "id": "abitibi-ouest",
+   "url": "abitibi-ouest.pmtiles",
+   "bbox": [
+    -79.55,
+    48.35,
+    -78.75,
+    49.25
+   ],
+   "taille": 125319073,
+   "entites": 82543,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 1
+  },
+  {
+   "id": "nord-la-sarre",
+   "url": "nord-la-sarre.pmtiles",
+   "bbox": [
+    -79.55,
+    49.25,
+    -78.75,
+    50.3
+   ],
+   "taille": 134118436,
+   "entites": 73871,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 0
+  },
+  {
+   "id": "temiscamingue",
+   "url": "temiscamingue.pmtiles",
+   "bbox": [
+    -79.55,
+    47.15,
+    -78.95,
+    47.95
+   ],
+   "taille": 78226395,
+   "entites": 47105,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 1
+  }
+ ]
+}

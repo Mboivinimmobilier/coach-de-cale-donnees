@@ -1,0 +1,18 @@
+couche: temiscamingue
+entités: 46823
+crs: EPSG:4326
+champs: ['ogc_fid', 'geocode', 'origine', 'an_origine', 'perturb', 'an_perturb', 'type_couv', 'gr_ess', 'cl_dens', 'cl_haut', 'cl_age', 'cl_pent', 'dep_sur', 'cl_drai', 'no_prg', 'in_naipf']
+correspondance: {"tc": "type_couv", "e": "gr_ess", "d": "cl_dens", "h": "cl_haut", "g": "cl_age", "or": "origine", "ao": "an_origine", "pe": "perturb", "ap": "an_perturb", "t": null, "te": null, "dr": "cl_drai", "ds": "dep_sur", "pt": "cl_pent"}
+classes: {"n": 15291, "i": 11114, "e": 6693, "h": 4497, "a": 3203, "x": 1895, "o": 1619, "w": 1085, "p": 908, "r": 553, "b": 247}
+classes cerf: {"m": 11339, "u": 9517, "a": 6757, "p": 6081, "n": 4748, "e": 3407, "j": 3227, "w": 858, "c": 616, "f": 555}
+sous-classes cerf: {"C14": 5936, "C5": 5796, "C4": 5543, "C17": 5017, "C3": 4472, "C9": 3686, "C1": 3407, "C2": 2285, "C15": 1893, "C8": 1752, "C16": 1688, "C6": 1203, "C9r": 1062, "C18": 1019, "C19": 858, "C10": 555, "C11": 333, "C7": 272, "C11-12": 175, "C12": 108, "X": 45}
+exemples:
+       fid   or    ao   pe    ap tc       e  d  h    g pt    ds  dr    t   te   vp   cg   st   an  o  s    v    p  l  ld    q      rd oc   vc _sc   _cv   pc   ag    rv   qc  fh
+0  1019025  NaN  <NA>  NaN  <NA>  M  BPFXEB  B  2   70  D   4GA  30  NaN  NaN  NaN  NaN  NaN  NaN  i  3  3.0  6.6  0   0  4.1  1074.0  m  2.4  C5  True  8.9    0  <NA>  4.2   0
+1  1019027  NaN  <NA>  NaN  <NA>  M  PEBPSE  B  3  JIR  D   4GA  30  NaN  NaN  NaN  NaN  NaN  NaN  i  3  3.0  6.0  0   0  6.0   329.0  m  2.4  C5  True  8.2    0  <NA>  8.7   0
+2  1019028  NaN  <NA>  NaN  <NA>  M  PEBPEB  B  2  JIR  B  R4GA  30  NaN  NaN  NaN  NaN  NaN  NaN  i  3  3.0  6.0  0   0  4.1   128.0  m  2.4  C5  True  8.2    0  <NA>  5.0   0
+3  1019029  NaN  <NA>  NaN  <NA>  M  PEBPEN  B  2  JIR  D   4GA  30  NaN  NaN  NaN  NaN  NaN  NaN  i  3  3.0  6.6  0   0  4.1   715.0  m  2.4  C5  True  8.9    0  <NA>  4.3   0
+4  1019540  NaN  <NA>  NaN  <NA>  M  PEBPPR  B  2  VIR  D   1AD  20  NaN  NaN  NaN  NaN  NaN  NaN  i  3  3.0  8.1  1  37  7.8  1427.0  m  2.4  C5  True  7.9   87  <NA>  5.0   0
+5  1019542  NaN  <NA>  NaN  <NA>  M  PEBPPB  B  2  VIR  D   4GA  30  NaN  NaN  NaN  NaN  NaN  NaN  i  3  3.0  8.5  1  49  7.8  1319.0  m  2.4  C5  True  8.3   71  <NA>  8.5   0
+6  1019543  NaN  <NA>  NaN  <NA>  M  PEBPPR  B  1  VIR  D   1AD  20  NaN  NaN  NaN  NaN  NaN  NaN  i  3  3.0  9.4  1  72  6.1     NaN  m  2.4  C5  True  7.5  283  <NA>  9.1   0
+7  1019544  NaN  <NA>  NaN  <NA>  M  PEPEPI  A  1  VIR  D   4GA  30  NaN  NaN  NaN  NaN  NaN  NaN  i  3  2.7  7.4  1  36  3.1  1250.0  m  2.4  C5  True  7.4    0  <NA>  5.7   0
