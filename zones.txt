@@ -3,3 +3,5 @@
 abitibi-ouest;48.35;-79.55;49.25;-78.75
 # Nord de La Sarre (Villebois, Val-Paradis, lacs Foubert et Lecoute, jusqu'au 50,3°)
 nord-la-sarre;49.25;-79.55;50.30;-78.75
+# Témiscamingue, cœur agricole de la zone 13 sud-ouest (Ville-Marie, Lorrainville, Béarn, Notre-Dame-du-Nord, Laverlochère, Guérin) — chevreuil
+temiscamingue;47.15;-79.55;47.95;-78.95
