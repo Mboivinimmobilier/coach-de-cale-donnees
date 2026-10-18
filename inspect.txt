@@ -1,0 +1,31 @@
+modele 2 maj 2026-10-18 ['abitibi-ouest', 'nord-la-sarre']
+abitibi-ouest 15 {'a': 'String', 'c': 'String', 'gm': 'String', 'k': 'String', 't': 'String', 'u': 'String'}
+ 48.83,-79.2 z14 : 43 peuplements, p manquant 0, classes {'x': 8, 'b': 2, 'e': 7, 'h': 2, 'n': 21, 'i': 3}
+    {'o': 'x', 'p': 0, 'q': 6.8, 'rd': 779, 'e': None, 'h': None, 'an': 'Mil. fortement pert.*11.4ha'}
+    {'o': 'b', 'p': 2, 'q': 5.4, 'rd': 775, 'e': None, 'h': None, 'an': 'Friche*4.2ha'}
+    {'o': 'e', 'p': 4.3, 'q': 5.4, 'rd': 847, 'e': 'ENEN', 'h': '3', 'an': 'EN80ML20*75% 12m*6.0ha'}
+    {'o': 'h', 'p': 4.2, 'q': 4.7, 'rd': 698, 'e': None, 'h': None, 'an': 'Aulnaie*8.6ha'}
+    {'o': 'x', 'p': 0, 'q': 6.8, 'rd': 774, 'e': None, 'h': None, 'an': 'Terrain agricole*107.2ha'}
+    {'o': 'n', 'p': 5.4, 'q': 7.2, 'rd': 391, 'e': 'PTPT', 'h': '1', 'an': None}
+ 48.87,-79.2 z14 : 49 peuplements, p manquant 0, classes {'n': 24, 'i': 7, 'x': 9, 'p': 3, 'e': 3, 'b': 1, 'h': 2}
+    {'o': 'n', 'p': 4.6, 'q': 5.4, 'rd': 1022, 'e': 'PTPT', 'h': '3', 'an': None}
+    {'o': 'n', 'p': 5.7, 'q': 5.4, 'rd': 825, 'e': 'FXFNRX', 'h': '6', 'an': 'FXFNRX*3m*3.7ha'}
+    {'o': 'n', 'p': 6.5, 'q': 7.7, 'rd': 769, 'e': 'PTPT', 'h': '1', 'an': None}
+    {'o': 'n', 'p': 5.5, 'q': 7.3, 'rd': 209, 'e': 'PTPT', 'h': '2', 'an': None}
+    {'o': 'i', 'p': 8.5, 'q': 7.2, 'rd': 621, 'e': 'ENENPT', 'h': '2', 'an': None}
+    {'o': 'i', 'p': 8.6, 'q': 7.2, 'rd': 163, 'e': 'PTPTSB', 'h': '1', 'an': None}
+ 48.9,-79.2 z14 : 76 peuplements, p manquant 0, classes {'n': 28, 'i': 12, 'h': 2, 'e': 19, 'b': 1, 'x': 7, 'p': 5, 'a': 2}
+    {'o': 'n', 'p': 7.3, 'q': 7.4, 'rd': None, 'e': 'RXRXFX', 'h': '5', 'an': 'RX70FX30*65% 6m*4.0ha'}
+    {'o': 'i', 'p': 8.6, 'q': 7.2, 'rd': 1468, 'e': 'PTFIEN', 'h': '2', 'an': None}
+    {'o': 'h', 'p': 4.2, 'q': 7.1, 'rd': 1173, 'e': None, 'h': None, 'an': 'Aulnaie*5.3ha'}
+    {'o': 'n', 'p': 5, 'q': 7.5, 'rd': 995, 'e': 'PTPA', 'h': '3', 'an': None}
+    {'o': 'e', 'p': 6.4, 'q': 7.2, 'rd': 1042, 'e': 'ENRX', 'h': '3', 'an': 'EN60PG20ML10...*75% 16m*7.6ha'}
+    {'o': 'b', 'p': 2, 'q': 7.4, 'rd': 1500, 'e': None, 'h': None, 'an': 'Coupe avec protec*2011*6.7ha'}
+ 48.8,-79.215 z14 : 50 peuplements, p manquant 0, classes {'x': 7, 'b': 1, 'n': 22, 'w': 2, 'h': 11, 'e': 4, 'p': 1, 'i': 2}
+    {'o': 'x', 'p': 0, 'q': 4.3, 'rd': 356, 'e': None, 'h': None, 'an': 'Mil. fortement pert.*74.1ha'}
+    {'o': 'b', 'p': 2, 'q': 3.4, 'rd': 653, 'e': None, 'h': None, 'an': 'Coupe avec protec*2006*6.9ha'}
+    {'o': 'n', 'p': 4.6, 'q': 3.4, 'rd': 545, 'e': 'PAPTEB', 'h': '3', 'an': None}
+    {'o': 'n', 'p': 2.8, 'q': 3.4, 'rd': 333, 'e': 'FNFX', 'h': '5', 'an': 'FN70FX30*75% 6m*9.8ha'}
+    {'o': 'w', 'p': 0, 'q': 2.9, 'rd': 288, 'e': None, 'h': None, 'an': 'Eau*290.0ha'}
+    {'o': 'h', 'p': 2.8, 'q': 4.1, 'rd': 673, 'e': None, 'h': None, 'an': 'Aulnaie*9.1ha'}
+nord-la-sarre 15 {'a': 'String', 'c': 'String', 'gm': 'String', 'k': 'String', 't': 'String', 'u': 'String'}
