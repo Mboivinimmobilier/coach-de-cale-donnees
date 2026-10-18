@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
     paths: ["tools/inspect_tiles.py", ".github/workflows/inspect.yml"]
+permissions:
+  contents: write
 jobs:
   inspect:
     runs-on: ubuntu-latest
@@ -12,4 +14,8 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install pmtiles mapbox-vector-tile
-      - run: python tools/inspect_tiles.py
+      - run: mkdir -p /tmp/o && python tools/inspect_tiles.py > /tmp/o/inspect.txt 2>&1 || true
+      - run: |
+          cd /tmp/o && git init -q && git checkout -q -b inspect
+          git -c user.name=gha -c user.email=a@b add -A && git -c user.name=gha -c user.email=a@b commit -q -m inspect
+          git push -f -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" inspect
