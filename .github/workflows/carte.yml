@@ -23,8 +23,6 @@ on:
         default: "0"
 permissions:
   contents: write
-  pages: write
-  id-token: write
 concurrency:
   group: carte
   cancel-in-progress: false
@@ -39,6 +37,14 @@ jobs:
       reste: ${{ steps.reste.outputs.reste }}
     steps:
       - uses: actions/checkout@v4
+      - name: Secrets R2 présents ?
+        env:
+          K: ${{ secrets.R2_ACCESS_KEY_ID }}
+          S: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          E: ${{ secrets.R2_ENDPOINT }}
+        run: |
+          if [ -z "$K" ] || [ -z "$S" ] || [ -z "$E" ]; then
+            echo "::error::Secrets R2_ACCESS_KEY_ID / R2_SECRET_ACCESS_KEY / R2_ENDPOINT manquants (Settings → Secrets and variables → Actions). Rien n'a été fait."; exit 1; fi
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - name: Outils
@@ -105,24 +111,7 @@ jobs:
           git -c user.name="github-actions" -c user.email="actions@github.com" add -A
           git -c user.name="github-actions" -c user.email="actions@github.com" commit -q -m "Rapport $(date -u +%F_%H%M)"
           git push -f -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" rapport
-      - name: Page d'accueil (GitHub Pages, README et index.json seulement, les feuillets sont sur R2)
-        if: always()
-        run: |
-          mkdir -p pages && cp README.md pages/README.md && cp dist/index.json pages/index.json 2>/dev/null || true
-          touch pages/.nojekyll
-      - uses: actions/configure-pages@v5
-        if: always()
-      - uses: actions/upload-pages-artifact@v3
-        if: always()
-        with: { path: pages }
-  publier:
-    needs: preparer
-    if: always()
-    runs-on: ubuntu-latest
-    environment: { name: github-pages, url: "${{ steps.d.outputs.page_url }}" }
-    steps:
-      - id: d
-        uses: actions/deploy-pages@v4
+      # GitHub Pages n'est plus déployé : la copie actuelle (3 feuillets, 338 Mo) y reste telle quelle, en secours pour l'app.
   continuer:
     # Il reste des feuillets : on relance un passage tout de suite (au plus ~5 par jour, le reste chaque nuit)
     needs: preparer
