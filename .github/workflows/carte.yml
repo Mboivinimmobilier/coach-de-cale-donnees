@@ -1,24 +1,42 @@
 name: Carte écoforestière
-# Prépare la carte écoforestière (MRNF) pour Coach de câle et la publie sur GitHub Pages.
-# Roule quand on change la liste des feuillets, chaque année en juillet (nouvelles perturbations), ou à la main.
+# Prépare la carte écoforestière (MRNF) pour Coach de câle et la publie sur Cloudflare R2
+# (https://pub-91f08d7b1e2442799201336b44415017.r2.dev). GitHub Pages ne garde que le README et une copie de index.json.
+# Chaque passage prépare au plus MAX_ZONES feuillets pas encore complets (limite de 300 min), puis le passage suivant continue :
+# tant qu'il reste des feuillets à faire, le travail se relance tout seul (et chaque nuit).
 on:
   push:
     branches: [main]
     paths: ["zones.txt", "feuillets.txt", "scripts/**", ".github/workflows/carte.yml"]
   schedule:
-    - cron: "0 7 15 7 *"
+    - cron: "0 7 15 7 *"    # refonte annuelle (nouvelles perturbations)
+    - cron: "0 6 * * *"     # chaque nuit : continue les feuillets pas finis
   workflow_dispatch:
+    inputs:
+      force:
+        description: "Refaire même les feuillets complets (1 = oui)"
+        default: "0"
+      max_zones:
+        description: "Feuillets au plus par passage"
+        default: "3"
+      chaine:
+        description: "(interne) numéro du passage enchaîné"
+        default: "0"
 permissions:
   contents: write
   pages: write
   id-token: write
 concurrency:
-  group: pages
+  group: carte
   cancel-in-progress: false
+env:
+  PUB_BASE: https://pub-91f08d7b1e2442799201336b44415017.r2.dev
+  R2_BUCKET: coach-de-cale
 jobs:
   preparer:
     runs-on: ubuntu-latest
     timeout-minutes: 300
+    outputs:
+      reste: ${{ steps.reste.outputs.reste }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -26,7 +44,7 @@ jobs:
       - name: Outils
         run: |
           pip install pyogrio geopandas shapely
-          sudo apt-get update -qq && sudo apt-get install -y -qq build-essential libsqlite3-dev zlib1g-dev
+          sudo apt-get update -qq && sudo apt-get install -y -qq build-essential libsqlite3-dev zlib1g-dev rclone
           git clone --depth 1 https://github.com/felt/tippecanoe.git /tmp/tippecanoe
           make -C /tmp/tippecanoe -j4 >/dev/null && sudo make -C /tmp/tippecanoe install >/dev/null
       - name: Cache des détails du 5e inventaire (reprend là où la dernière préparation s'est arrêtée)
@@ -35,10 +53,49 @@ jobs:
           path: cache
           key: gfi-${{ github.run_id }}
           restore-keys: gfi-
+      - name: Index déjà publié (R2)
+        run: |
+          mkdir -p publie
+          curl -fsSL "$PUB_BASE/index.json" -o publie/index.json || echo "pas encore d'index publié"
+          [ -f publie/index.json ] && python3 -c "import json;d=json.load(open('publie/index.json'));print(len(d.get('feuillets',[])),'feuillets publiés')" || true
       - name: Préparer les feuillets
+        env:
+          FORCE: ${{ github.event.inputs.force || '0' }}
+          MAX_ZONES: ${{ github.event.inputs.max_zones || '3' }}
         run: python scripts/prep.py
-      - name: Page d'accueil
-        run: cp README.md dist/README.md && ls -la dist
+      - name: Publier sur R2 (rclone, API S3)
+        if: always()
+        env:
+          RCLONE_CONFIG_R2_TYPE: s3
+          RCLONE_CONFIG_R2_PROVIDER: Cloudflare
+          RCLONE_CONFIG_R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          RCLONE_CONFIG_R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          RCLONE_CONFIG_R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          RCLONE_CONFIG_R2_ACL: private
+        run: |
+          ls -la dist || true
+          # Les feuillets d'abord, l'index en dernier (l'app ne voit un feuillet qu'une fois son fichier en place)
+          for f in dist/*.pmtiles; do [ -f "$f" ] && rclone copyto --s3-no-check-bucket --s3-chunk-size 64M --s3-upload-concurrency 4 "$f" "r2:$R2_BUCKET/$(basename "$f")"; done
+          [ -f dist/index.json ] && rclone copyto --s3-no-check-bucket --header-upload "Cache-Control: no-cache" dist/index.json "r2:$R2_BUCKET/index.json"
+          rclone ls "r2:$R2_BUCKET" || true
+      - name: Reste-t-il des feuillets à préparer ?
+        id: reste
+        if: always()
+        run: |
+          python3 - <<'EOF' >> "$GITHUB_OUTPUT"
+          import json, datetime, os
+          zs=[l.strip().split(";")[0].strip() for l in open("zones.txt") if l.strip() and not l.strip().startswith("#")]
+          pub={}
+          try:
+            for f in json.load(open("dist/index.json")).get("feuillets",[]): pub[f["id"]]=f
+          except Exception: pass
+          def ok(f):
+            try: return f.get("complet") and (datetime.date.today()-datetime.date.fromisoformat(f.get("maj","2000-01-01"))).days<365
+            except Exception: return False
+          reste=[z for z in zs if not ok(pub.get(z,{}))]
+          print("reste="+("1" if reste else "0")); print("liste="+",".join(reste[:20]))
+          EOF
+          cat "$GITHUB_OUTPUT"
       - name: Rapport (journal lisible dans la branche « rapport »)
         if: always()
         run: |
@@ -48,13 +105,33 @@ jobs:
           git -c user.name="github-actions" -c user.email="actions@github.com" add -A
           git -c user.name="github-actions" -c user.email="actions@github.com" commit -q -m "Rapport $(date -u +%F_%H%M)"
           git push -f -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" rapport
+      - name: Page d'accueil (GitHub Pages, README et index.json seulement, les feuillets sont sur R2)
+        if: always()
+        run: |
+          mkdir -p pages && cp README.md pages/README.md && cp dist/index.json pages/index.json 2>/dev/null || true
+          touch pages/.nojekyll
       - uses: actions/configure-pages@v5
+        if: always()
       - uses: actions/upload-pages-artifact@v3
-        with: { path: dist }
+        if: always()
+        with: { path: pages }
   publier:
     needs: preparer
+    if: always()
     runs-on: ubuntu-latest
     environment: { name: github-pages, url: "${{ steps.d.outputs.page_url }}" }
     steps:
       - id: d
         uses: actions/deploy-pages@v4
+  continuer:
+    # Il reste des feuillets : on relance un passage tout de suite (au plus ~5 par jour, le reste chaque nuit)
+    needs: preparer
+    if: needs.preparer.outputs.reste == '1' && github.run_attempt == '1' && github.event_name != 'schedule' && (github.event.inputs.chaine || '0') < 8
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          N=$(( ${{ github.event.inputs.chaine || '0' }} + 1 ))
+          curl -fsS -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/carte.yml/dispatches" \
+            -d "{\"ref\":\"main\",\"inputs\":{\"chaine\":\"$N\",\"max_zones\":\"${{ github.event.inputs.max_zones || '3' }}\"}}" \
+            || echo "relance impossible (le passage de nuit continuera)"

@@ -210,6 +210,7 @@ def maj_perturb(df, nom, bb):
 
 # ---- Données détaillées du 5e inventaire (code de terrain, végétation potentielle, gaules, surface terrière)
 GFI_CACHE = "cache"
+GFI_RESTE = {}   # feuillet -> détails pas encore lus (0 = complet)
 def gfi_enrich(df, nom, budget_s=150 * 60, threads=8):
   import concurrent.futures as cf
   os.makedirs(GFI_CACHE, exist_ok=True); cpath = f"{GFI_CACHE}/gfi-{nom}.json"
@@ -248,7 +249,8 @@ def gfi_enrich(df, nom, budget_s=150 * 60, threads=8):
       if val is not None: cache[fid] = val; done += 1
       if done and done % 5000 == 0: json.dump(cache, open(cpath, "w")); log(nom, "détails lus :", done)
   json.dump(cache, open(cpath, "w"))
-  log(nom, "détails lus cette fois :", done, "en", int(time.time() - t0), "s ; total en cache :", len(cache))
+  log(nom, "détails lus cette fois :", done, "en", int(time.time() - t0), "s ; total en cache :", len(cache), "; restants :", len(todo) - done)
+  GFI_RESTE[nom] = len(todo) - done
   for k, col in GFI_KEYS.items():
     vals = df["fid"].map(lambda f: (cache.get(str(f)) or {}).get(k, ""))
     if col == "te": df[col] = [v if v else old for v, old in zip(vals, df[col] if col in df else [None] * len(df))]
@@ -828,7 +830,9 @@ def process(fid, gpkg, bb=None, budget=None):
   RAVAGES_OUT.clear()
   subprocess.run(cmd, check=True)
   b = df.total_bounds
-  return {"id": fid, "url": f"{fid}.pmtiles", "bbox": [round(float(x), 4) for x in b], "taille": os.path.getsize(out), "entites": int(len(df)), "champs": m, "ravages": nrav}
+  base = os.environ.get("PUB_BASE", "").rstrip("/")
+  return {"id": fid, "url": (base + "/" + f"{fid}.pmtiles") if base else f"{fid}.pmtiles", "bbox": [round(float(x), 4) for x in b], "taille": os.path.getsize(out), "entites": int(len(df)), "champs": m, "ravages": nrav,
+          "complet": GFI_RESTE.get(fid, 0) == 0, "restants": int(GFI_RESTE.get(fid, 0)), "maj": datetime.date.today().isoformat()}
 
 def download(fid, url):
   z = f"{TMP}/{fid}.zip"
@@ -861,6 +865,20 @@ def main():
     done.append(process("TEST", args[1]))
   elif os.path.exists("zones.txt"):
     zs = [l.strip() for l in open("zones.txt") if l.strip() and not l.strip().startswith("#")]
+    # Index déjà publié (R2) : les feuillets complets ne sont pas refaits, sauf FORCE=1 ou s'ils ont plus d'un an
+    pub = {}
+    try:
+      if os.path.exists("publie/index.json"):
+        for f in json.load(open("publie/index.json")).get("feuillets", []): pub[f["id"]] = f
+    except Exception: log("index publié illisible", traceback.format_exc())
+    force = os.environ.get("FORCE") == "1"
+    def a_jour(f):
+      try: return f.get("complet") and (datetime.date.today() - datetime.date.fromisoformat(f.get("maj", "2000-01-01"))).days < 365
+      except Exception: return False
+    todo_zones = [l for l in zs if force or not a_jour(pub.get(l.split(";")[0].strip(), {}))]
+    log("feuillets :", len(zs), "; déjà complets et récents :", len(zs) - len(todo_zones), "; à préparer :", [l.split(";")[0] for l in todo_zones])
+    MAX_Z = int(os.environ.get("MAX_ZONES", "3"))   # pas plus de N feuillets par passage (limite de 300 min) ; le passage suivant continue
+    zs = todo_zones[:MAX_Z]
     for iz, l in enumerate(zs):
       nom, a, b, c, d = [x.strip() for x in l.split(";")]
       try:
@@ -900,6 +918,16 @@ def main():
                               "fin_saison": "après le 15 nov. ou 20 cm de neige : pc × 0,92 + Rv, Rv = 0,8 si rv = 0, 0,5 si rv ≤ 3000, 0,25 si rv ≤ 10000",
                               "couche_ravages": "ravages", "source_ravages": "MRNF, Habitats fauniques (Habitat_legal), aires de confinement du cerf de Virginie"}},
          "feuillets": done}
+  # Fusion avec l'index publié : on garde les feuillets déjà en ligne qu'on n'a pas refaits
+  try:
+    if os.path.exists("publie/index.json"):
+      old = json.load(open("publie/index.json")).get("feuillets", [])
+      ids = {f["id"] for f in done}
+      keep = [f for f in old if f["id"] not in ids and f.get("url", "").startswith("http")]
+      idx["feuillets"] = keep + done
+      log("index fusionné :", len(keep), "gardés +", len(done), "refaits")
+  except Exception: log("fusion index ERREUR", traceback.format_exc())
+  idx["feuillets"].sort(key=lambda f: f["id"])
   json.dump(idx, open(f"{OUT}/index.json", "w"), ensure_ascii=False, indent=1)
   open(f"{OUT}/.nojekyll", "w").close()
   log(json.dumps(idx, ensure_ascii=False)[:800])
