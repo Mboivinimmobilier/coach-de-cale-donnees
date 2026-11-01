@@ -1,7 +1,45 @@
 # Zones à préparer : nom;lat_sud;lon_ouest;lat_nord;lon_est   (modifier ce fichier relance la préparation)
+# Les feuillets sont faits dans l'ordre du fichier, 2 par passage, et seulement s'ils manquent ou ont plus d'un an.
+# Un feuillet ≈ 0,8° × 1,0° (environ 90 km × 75 km) ≈ 1 h 30 de préparation.
+
+# --- Abitibi-Témiscamingue (déjà en ligne) ---
 # Abitibi-Ouest
 abitibi-ouest;48.35;-79.55;49.25;-78.75
 # Nord de l'Abitibi-Ouest (jusqu'au 50,3°)
 nord-la-sarre;49.25;-79.55;50.30;-78.75
 # Témiscamingue, cœur agricole de la zone 13 sud-ouest — chevreuil
 temiscamingue;47.15;-79.55;47.95;-78.95
+
+# --- Priorité 1 : secteurs demandés / très chassés ---
+# Hautes-Laurentides : Mont-Laurier, Ferme-Neuve, réservoir Baskatong (zones 10 et 11)
+mont-laurier;46.30;-76.00;47.10;-75.00
+# Réserve faunique La Vérendrye, Grand-Remous au Domaine (zones 12 et 13)
+la-verendrye;46.90;-77.70;47.80;-76.60
+# Gaspésie ouest : Matane, réserve de Matane, Cap-Chat (zone 1)
+gaspesie-ouest;48.30;-67.20;49.10;-66.00
+# Gaspésie est : Murdochville, Sainte-Anne-des-Monts, Gaspé (zone 1)
+gaspesie-est;48.40;-66.00;49.10;-64.50
+# Abitibi-Est : Val-d'Or, Malartic, Rivière-Héva (zone 13)
+val-dor;47.80;-78.75;48.60;-77.70
+# Rouyn-Noranda et le lac Preissac (entre le Témiscamingue et l'Abitibi-Ouest)
+rouyn-noranda;47.95;-79.55;48.35;-78.75
+# Amos, Senneterre, Barraute (zone 13 nord-est)
+amos;48.60;-78.75;49.40;-77.80
+
+# --- Priorité 2 : grandes régions d'orignal ---
+# Haute-Mauricie : La Tuque, Saint-Roch-de-Mékinac (zone 26)
+haute-mauricie;47.30;-74.30;48.20;-73.30
+# Matawinie : Saint-Michel-des-Saints, Saint-Zénon, réservoir Taureau (zones 15 et 26) — chevreuil et orignal
+matawinie;46.20;-74.50;47.00;-73.50
+# Pontiac / Outaouais : Fort-Coulonge, Maniwaki (zone 10) — chevreuil et orignal
+pontiac;45.90;-77.20;46.70;-76.00
+# Nord du Lac-Saint-Jean : Saint-Ludger-de-Milot, Dolbeau (zone 28)
+lac-saint-jean-nord;48.50;-72.80;49.40;-71.60
+# Monts-Valin, Saint-Fulgence, rivière Sainte-Marguerite (zone 18 sud / 28)
+monts-valin;48.30;-71.60;49.20;-70.40
+# Charlevoix : réserve des Laurentides est, Baie-Saint-Paul, Saint-Urbain (zone 27 / 18)
+charlevoix;47.40;-71.20;48.30;-70.00
+# Bas-Saint-Laurent : arrière-pays de Rimouski, réserve Duchénier, Lac-des-Aigles (zone 2)
+bas-saint-laurent;47.60;-69.50;48.40;-68.20
+# Côte-Nord sud : Forestville, Baie-Comeau, Manicouagan sud (zone 18)
+cote-nord-sud;49.00;-69.00;49.80;-67.80

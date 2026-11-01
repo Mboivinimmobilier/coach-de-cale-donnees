@@ -1,7 +1,7 @@
 name: Carte écoforestière
 # Prépare la carte écoforestière (MRNF) pour Coach de câle et la publie sur Cloudflare R2
 # (https://pub-91f08d7b1e2442799201336b44415017.r2.dev). GitHub Pages ne garde que le README et une copie de index.json.
-# Chaque passage prépare au plus MAX_ZONES feuillets pas encore complets (limite de 300 min), puis le passage suivant continue :
+# Chaque passage prépare au plus MAX_ZONES feuillets (2) pas encore complets (limite de 300 min, ~1 h 30 par feuillet), puis le passage suivant continue :
 # tant qu'il reste des feuillets à faire, le travail se relance tout seul (et chaque nuit).
 on:
   push:
@@ -17,7 +17,7 @@ on:
         default: "0"
       max_zones:
         description: "Feuillets au plus par passage"
-        default: "3"
+        default: "2"
       chaine:
         description: "(interne) numéro du passage enchaîné"
         default: "0"
@@ -67,7 +67,7 @@ jobs:
       - name: Préparer les feuillets
         env:
           FORCE: ${{ github.event.inputs.force || '0' }}
-          MAX_ZONES: ${{ github.event.inputs.max_zones || '3' }}
+          MAX_ZONES: ${{ github.event.inputs.max_zones || '2' }}
         run: python scripts/prep.py
       - name: Publier sur R2 (rclone, API S3)
         if: always()
@@ -122,5 +122,5 @@ jobs:
           N=$(( ${{ github.event.inputs.chaine || '0' }} + 1 ))
           curl -fsS -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${{ github.repository }}/actions/workflows/carte.yml/dispatches" \
-            -d "{\"ref\":\"main\",\"inputs\":{\"chaine\":\"$N\",\"max_zones\":\"${{ github.event.inputs.max_zones || '3' }}\"}}" \
+            -d "{\"ref\":\"main\",\"inputs\":{\"chaine\":\"$N\",\"max_zones\":\"${{ github.event.inputs.max_zones || '2' }}\"}}" \
             || echo "relance impossible (le passage de nuit continuera)"
