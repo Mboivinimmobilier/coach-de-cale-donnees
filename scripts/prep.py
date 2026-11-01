@@ -164,8 +164,13 @@ def wfs_zone(nom, s_, w, n, e, step=0.05, typ="ori_pee_close_scale", suffix=""):
   """Télécharge une couche WFS d'une zone par petits carreaux, sans doublons."""
   feats = {}; lat = s_; k = 0; fails = 0
   while lat < n:
+    lat = round(lat, 4)
+    # bord nord/est : un carreau de hauteur ou largeur nulle (erreur d'arrondi) fait planter le serveur (400) — on le saute
+    if n - lat < 1e-4: break
     lon = w
     while lon < e:
+      lon = round(lon, 4)
+      if e - lon < 1e-4: break
       start = 0
       while True:
         q = (f"{WFS}?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:{typ}&SRSNAME=EPSG:4326"
