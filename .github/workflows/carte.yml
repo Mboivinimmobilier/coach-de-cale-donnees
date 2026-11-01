@@ -23,6 +23,7 @@ on:
         default: "0"
 permissions:
   contents: write
+  actions: write   # relance du passage suivant (job « continuer »)
 concurrency:
   group: carte
   cancel-in-progress: false
