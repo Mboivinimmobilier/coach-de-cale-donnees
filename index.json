@@ -1,0 +1,640 @@
+{
+ "maj": "2026-11-14",
+ "annee_ref": 2026,
+ "source": "MRNF, Carte écoforestière à jour (CC-BY 4.0)",
+ "modele": 2,
+ "classes": {
+  "i": "Idéal (mixte mature)",
+  "a": "Abri avec sapin",
+  "e": "Abri d'épinette noire",
+  "n": "Nourriture",
+  "h": "Humide riche",
+  "b": "Humide pauvre",
+  "p": "Passage",
+  "o": "Ouvert récent",
+  "r": "Résineux peu utile",
+  "w": "Eau",
+  "x": "Non forestier"
+ },
+ "especes": {
+  "orignal": {
+   "classes": {
+    "i": "Idéal (mixte mature)",
+    "a": "Abri avec sapin",
+    "e": "Abri d'épinette noire",
+    "n": "Nourriture",
+    "h": "Humide riche",
+    "b": "Humide pauvre",
+    "p": "Passage",
+    "o": "Ouvert récent",
+    "r": "Résineux peu utile",
+    "w": "Eau",
+    "x": "Non forestier"
+   }
+  },
+  "cerf": {
+   "modele": 1,
+   "classes": {
+    "e": "Abri d'élite (thuya, pruche, sapin)",
+    "a": "Abri (épinettes, pins)",
+    "m": "Nourriture-abri (couche d'automne)",
+    "j": "Jeune coupe (brout)",
+    "n": "Nourriture (couvert clair, régénération, mât)",
+    "f": "Friche",
+    "c": "Champ agricole",
+    "u": "Peu utilisé (feuillu fermé, mélézaie, aulnaie, plantation)",
+    "p": "Pauvre ou nul (pessière claire, dénudé, tourbière)",
+    "w": "Eau"
+   },
+   "proprietes": {
+    "oc": "classe",
+    "vc": "valeur de la classe sur 3",
+    "pc": "note d'automne sur 10 (avant le 15 nov.)",
+    "qc": "secteur sur 10 (~200 ha)",
+    "ag": "distance au champ ou à la friche (m, max 3000)",
+    "rv": "distance au ravage (m, 0 = dedans, max 30000)"
+   },
+   "fin_saison": "après le 15 nov. ou 20 cm de neige : pc × 0,92 + Rv, Rv = 0,8 si rv = 0, 0,5 si rv ≤ 3000, 0,25 si rv ≤ 10000",
+   "couche_ravages": "ravages",
+   "source_ravages": "MRNF, Habitats fauniques (Habitat_legal), aires de confinement du cerf de Virginie"
+  }
+ },
+ "feuillets": [
+  {
+   "id": "abitibi-ouest",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/abitibi-ouest.pmtiles",
+   "bbox": [
+    -79.55,
+    48.35,
+    -78.75,
+    49.25
+   ],
+   "taille": 125298583,
+   "entites": 82543,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 1,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-10-31"
+  },
+  {
+   "id": "amos",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/amos.pmtiles",
+   "bbox": [
+    -78.75,
+    48.6,
+    -77.8,
+    49.4
+   ],
+   "taille": 157525097,
+   "entites": 99342,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 0,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-02"
+  },
+  {
+   "id": "bas-saint-laurent",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/bas-saint-laurent.pmtiles",
+   "bbox": [
+    -69.5,
+    47.6,
+    -68.2,
+    48.4
+   ],
+   "taille": 148145013,
+   "entites": 95257,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 13,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-02"
+  },
+  {
+   "id": "charlevoix",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/charlevoix.pmtiles",
+   "bbox": [
+    -71.2,
+    47.4,
+    -70.0,
+    48.3
+   ],
+   "taille": 199635733,
+   "entites": 136333,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 2,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-02"
+  },
+  {
+   "id": "cote-nord-sud",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/cote-nord-sud.pmtiles",
+   "bbox": [
+    -69.0,
+    49.0,
+    -67.8,
+    49.8
+   ],
+   "taille": 159649872,
+   "entites": 112615,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 0,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-02"
+  },
+  {
+   "id": "gaspesie-est",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/gaspesie-est.pmtiles",
+   "bbox": [
+    -66.0,
+    48.4,
+    -64.5,
+    49.1
+   ],
+   "taille": 214049480,
+   "entites": 127672,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 8,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-01"
+  },
+  {
+   "id": "gaspesie-ouest",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/gaspesie-ouest.pmtiles",
+   "bbox": [
+    -67.2,
+    48.3,
+    -66.0,
+    49.1
+   ],
+   "taille": 186183630,
+   "entites": 108706,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 7,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-01"
+  },
+  {
+   "id": "haute-mauricie",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/haute-mauricie.pmtiles",
+   "bbox": [
+    -74.3,
+    47.3,
+    -73.3,
+    48.2
+   ],
+   "taille": 165480318,
+   "entites": 117611,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 0,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-02"
+  },
+  {
+   "id": "la-verendrye",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/la-verendrye.pmtiles",
+   "bbox": [
+    -77.7,
+    46.9,
+    -76.6,
+    47.8
+   ],
+   "taille": 154846428,
+   "entites": 112741,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 0,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-01"
+  },
+  {
+   "id": "lac-saint-jean-nord",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/lac-saint-jean-nord.pmtiles",
+   "bbox": [
+    -72.8,
+    48.5,
+    -71.6,
+    49.4
+   ],
+   "taille": 172429516,
+   "entites": 116087,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 1,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-02"
+  },
+  {
+   "id": "matawinie",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/matawinie.pmtiles",
+   "bbox": [
+    -74.5,
+    46.2,
+    -73.5,
+    47.0
+   ],
+   "taille": 158971330,
+   "entites": 111384,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 12,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-02"
+  },
+  {
+   "id": "mont-laurier",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/mont-laurier.pmtiles",
+   "bbox": [
+    -76.0,
+    46.3,
+    -75.0,
+    47.1
+   ],
+   "taille": 129195704,
+   "entites": 91084,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 25,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-01"
+  },
+  {
+   "id": "monts-valin",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/monts-valin.pmtiles",
+   "bbox": [
+    -71.6,
+    48.3,
+    -70.4,
+    49.2
+   ],
+   "taille": 198751050,
+   "entites": 138374,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 1,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-02"
+  },
+  {
+   "id": "nord-la-sarre",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/nord-la-sarre.pmtiles",
+   "bbox": [
+    -79.55,
+    49.25,
+    -78.75,
+    50.3
+   ],
+   "taille": 135157646,
+   "entites": 73871,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 0,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-01"
+  },
+  {
+   "id": "pontiac",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/pontiac.pmtiles",
+   "bbox": [
+    -77.2,
+    45.9,
+    -76.0,
+    46.7
+   ],
+   "taille": 161369387,
+   "entites": 123658,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 29,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-02"
+  },
+  {
+   "id": "rouyn-noranda",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/rouyn-noranda.pmtiles",
+   "bbox": [
+    -79.55,
+    47.95,
+    -78.75,
+    48.35
+   ],
+   "taille": 65659099,
+   "entites": 36808,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 1,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-02"
+  },
+  {
+   "id": "temiscamingue",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/temiscamingue.pmtiles",
+   "bbox": [
+    -79.55,
+    47.15,
+    -78.95,
+    47.95
+   ],
+   "taille": 78226219,
+   "entites": 47105,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 1,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-01"
+  },
+  {
+   "id": "val-dor",
+   "url": "https://pub-91f08d7b1e2442799201336b44415017.r2.dev/val-dor.pmtiles",
+   "bbox": [
+    -78.75,
+    47.8,
+    -77.7,
+    48.6
+   ],
+   "taille": 157499663,
+   "entites": 89636,
+   "champs": {
+    "tc": "type_couv",
+    "e": "gr_ess",
+    "d": "cl_dens",
+    "h": "cl_haut",
+    "g": "cl_age",
+    "or": "origine",
+    "ao": "an_origine",
+    "pe": "perturb",
+    "ap": "an_perturb",
+    "t": null,
+    "te": null,
+    "dr": "cl_drai",
+    "ds": "dep_sur",
+    "pt": "cl_pent"
+   },
+   "ravages": 0,
+   "complet": true,
+   "restants": 0,
+   "maj": "2026-11-02"
+  }
+ ]
+}
