@@ -30,15 +30,14 @@ Préparer automatiquement la Carte écoforestière à jour du Québec (MRNF, lic
 
 ## 5. Problèmes connus et contradictions
 
-- **`README.md` en retard** : il dit que le résultat est « publié sur GitHub Pages ». Depuis le 31 oct., la publication se fait sur R2.
+- **`README.md`** : la phrase sur GitHub Pages a été corrigée le 17 nov. (publication sur R2, d'après `carte.yml`).
 - Le pipeline tourne chaque nuit : un changement dans `scripts/` ou `zones.txt` poussé sur `main` relance la préparation et publie.
 - Couverture : l'objectif est tout le Québec; les secteurs hors de la liste passent par « Demander mon secteur » dans l'app.
 
 ## 6. Tâches restantes
 
-1. Corriger la phrase du `README.md` sur GitHub Pages.
-2. Ajouter les secteurs demandés par les utilisateurs (table `cdc_demandes_secteur` du projet Supabase `coach-de-cale`).
-3. Mettre à jour les dates de saison chaque année (`data/saisons-2026.json`).
+1. Ajouter les secteurs demandés par les utilisateurs (table `cdc_demandes_secteur` du projet Supabase `coach-de-cale`).
+2. Mettre à jour les dates de saison chaque année (`data/saisons-2026.json`).
 
 ## 7. Sources
 

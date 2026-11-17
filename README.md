@@ -9,7 +9,7 @@ Ce dépôt prépare automatiquement la **Carte écoforestière à jour** du Qué
   u peu utilisé, p pauvre, w eau), valeur `vc` (/3), note d'automne `pc` (/10), secteur `qc` (/10), distance au champ `ag` et au ravage `rv` (m),
   d'après la clé du MFFP (Hébert et al. 2013) transposée à l'automne ; les grands champs sont découpés en bandes de 0-100, 100-200 et 200 m et plus.
   Couche `ravages` : aires de confinement du cerf (MRNF, Habitats fauniques, habitat légal).
-- Résultat : un fichier `zone.pmtiles` par zone, publié sur GitHub Pages, + `index.json`.
+- Résultat : un fichier `zone.pmtiles` par zone, publié sur Cloudflare R2 (voir `.github/workflows/carte.yml`), + `index.json`. GitHub Pages ne garde que ce README et une copie de `index.json`.
 - Mise à jour : chaque année en juillet, ou quand on modifie `zones.txt`.
 
 Les classes « orignal » sont des repères indicatifs tirés de la recherche (repousses de 15 à 30 ans, mixtes et lisières, milieux humides) ; elles ne remplacent pas la connaissance du terrain.
