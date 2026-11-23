@@ -1,6 +1,9 @@
-# coach-de-cale-donnees — consignes Claude
+# Coach de câle, données — repères pour Claude
 
-- État du projet : `docs/ETAT_DU_PROJET.md` (s'il existe) — à consulter au démarrage de chaque session et à mettre à jour après un changement important vérifié. Ne jamais annoncer une fonctionnalité comme testée sans l'avoir testée.
+- Dépôt public : n'y écrire aucun secret ni renseignement interne.
+- État du projet, décisions en vigueur, problèmes connus et tâches restantes : `docs/ETAT_DU_PROJET.md`. À consulter au démarrage de chaque session et à mettre à jour après un changement important vérifié.
+- Un changement à `zones.txt`, `feuillets.txt` ou `scripts/` poussé sur `main` relance la préparation et publie sur Cloudflare R2.
+- L'application est dans le dépôt `coach-de-cale`.
 - Par défaut (méthode Factory) : travailler sur une branche et ouvrir une pull request vers `main` ; ne jamais déployer en production sans autorisation explicite de Marc-André.
 
 ## Optimal AI Factory — Speed First (méthode de développement)
